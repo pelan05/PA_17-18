@@ -27,10 +27,10 @@ tomcat
 target/
 
 # IntelliJ project files 
-*.iml
-*.iws
-*.ipr
-.idea/
+PA/*.iml
+PA/*.iws
+PA/*.ipr
+PA/.idea/
 
 # eclipse project file
 .settings/
@@ -38,13 +38,13 @@ target/
 .project
 
 # NetBeans specific
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
+PA/nbproject/private/
+PA/build/
+PA/nbbuild/
+PA/dist/
+PA/nbdist/
+PA/nbactions.xml
+PA/nb-configuration.xml
 
 
 # OS

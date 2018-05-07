@@ -1,7 +1,16 @@
 package logicaJogo;
-
+import java.util.*;
 
 public class NewClass {
+
+
+    
+}
+
+
+
+
+
 
 /*
 images/Back.jpg
@@ -15,5 +24,3 @@ images/IMG5.jpg
 images/IMG6.jpg
 images/IMG7.jpg
 */
-    
-}

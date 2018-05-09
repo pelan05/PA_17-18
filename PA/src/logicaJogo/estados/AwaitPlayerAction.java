@@ -76,28 +76,28 @@ public class AwaitPlayerAction implements Estado{
     @Override
     public Estado closeCombat() {
     
-        return new AwaitPlayerAction();
+        return this;
     
     }
 
     @Override
     public Estado coupure() {
     
-        return new AwaitPlayerAction();
+        return this;
     
     }
 
     @Override
     public Estado supplyRaid() {
     
-        return new AwaitPlayerAction();
+        return this;
     
     }
 
     @Override
     public Estado sabotage() {
     
-        return new AwaitPlayerAction();
+        return this;
     
     }
     

@@ -4,7 +4,7 @@ import logicaJogo.*;
 
 
 
-public class EnemyCard {
+public class EnemyCard extends Card{
     
     int ladders; //0-4
     int rams; //0-4

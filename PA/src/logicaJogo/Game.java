@@ -40,6 +40,9 @@ public class Game{
         this.day++;
     }
     
+    public EventCard getArrayList(){
+        return arr;
+    }
     
     
     

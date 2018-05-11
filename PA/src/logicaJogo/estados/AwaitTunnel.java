@@ -48,8 +48,13 @@ public class AwaitTunnel implements Estado{
 
     @Override
     public Estado paidTunnelMovement() {
+        if(player.getActonPoints() == 0)
+            return this;
+        else
+            player.reduceActionPoints();
+            return return new AwaitPlayerAction();
         
-        return new AwaitPlayerAction();
+        
         
     }
 

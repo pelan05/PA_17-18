@@ -35,14 +35,6 @@ public class StatusCard extends Card {
         return extraSupplies;
     }
 
-    public int getTunnel() {
-        for (int i = 0; i < tunnel.length; i++)
-            if (tunnel[i])
-                return i;
-
-        return 0;
-    }
-
     public void increaseWall() {
         wall.setValueUp();
     }
@@ -63,5 +55,14 @@ public class StatusCard extends Card {
     }
     public void decreaseFortressSupplies() {
         supplies.setValueDown();
+    }
+
+    public void increaseTunnel(){
+        if(tunnel.getValue() < tunnel.getSize())
+            tunnel.setValueUp();
+    }
+    public void decreaseTunnel(){
+        if(tunnel.getValue() > 0)
+            tunnel.setValueDown();
     }
 }

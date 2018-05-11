@@ -14,7 +14,7 @@ public class Game{
     protected ArrayList <EventCard> arr = new ArrayList <EventCard>();
     
     
-    Game(){
+    public Game(){
     this.enemy = new EnemyCard();
     this.status = new StatusCard();
         for (int i = 0; i < 7 ; i++) {
@@ -40,7 +40,7 @@ public class Game{
         this.day++;
     }
     
-    public EventCard getArrayList(){
+    public ArrayList getArrayList(){
         return arr;
     }
     

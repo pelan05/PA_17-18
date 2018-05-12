@@ -9,8 +9,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Game {
-	private int actionPoints;
-	private int day;
+    
+    private boolean over;
+    
+    private int actionPoints;
+    private int day;
+    private int iteration; //1-7
 	
     private DiceRoll dice;
 
@@ -20,16 +24,24 @@ public class Game {
     private ArrayList<EventCard> deck;
 
     public Game(){
+        
+        this.over = false;
+        
         this.dice = new DiceRoll();
+        
         this.status = new StatusCard();
         this.enemy = new EnemyCard();
-		this.actionPoints = 0;
-		this.day = 0;
-		/*
-		for (int i = 0; i < 7 ; i++) {
+	
+        this.actionPoints = 0;
+	
+        this.day = 1;
+	this.iteration = 0;
+        
+        /*
+	for (int i = 0; i < 7 ; i++) {
             this.deck.add(new EventCard());
         }
-		*/
+	*/
 		
     }
 
@@ -53,7 +65,11 @@ public class Game {
         Collections.shuffle(deck);
     }
 	
-	public void setActionPoints(int ap){
+    public boolean getOver(){
+        return over;
+    }
+    
+    public void setActionPoints(int ap){
         this.actionPoints = ap;
     }
     
@@ -64,6 +80,20 @@ public class Game {
     public int getDay(){
         return this.day;
     }
+    
+    public int getIt(){
+        return this.iteration;
+    }
+    
+    public StatusCard getStatus(){
+        return status;
+    }
+    
+    public EnemyCard getEnemy(){
+        return enemy;
+    }
+    
+    
     
     public void addDay(){
         this.day++;

@@ -16,7 +16,7 @@ public class EnemyCard extends Card{
         this.trebuchet = new row(3, 3);
     }
 
-    public int getladders() {
+    public int getLadders() {
         return ladders.getValue();
     }
 
@@ -24,7 +24,7 @@ public class EnemyCard extends Card{
         ladders.setValueDown();
     }
 
-    public int getrams() {
+    public int getRams() {
         return rams.getValue();
     }
 

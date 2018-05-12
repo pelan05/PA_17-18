@@ -21,5 +21,9 @@ public class EventCard extends Card {
     public Event getEvent(int day) {
         return events[day - 1];
     }
+    
+    public int getID(){
+        return id;
+    }
 }
 

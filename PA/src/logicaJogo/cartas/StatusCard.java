@@ -27,11 +27,15 @@ public class StatusCard extends Card {
         return morale.getValue();
     }
 
-    public int getFortressSupplies() {
+    public int getSupplies() {
         return supplies.getValue();
     }
 
-    public row getSupplies() {
+    public int getTunnel() {
+        return tunnel.getValue();
+    }
+        
+    public row getExtraSupplies() {
         return extraSupplies;
     }
 

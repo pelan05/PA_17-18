@@ -35,13 +35,12 @@ public class Game {
         this.actionPoints = 0;
 	
         this.day = 1;
-<<<<<<< HEAD
+        
         this.iteration = 0;
         
         CreateDeck();
-        }
+        
 		
-=======
 	this.iteration = 0;
         
         /*
@@ -51,7 +50,7 @@ public class Game {
 	*/
 		
     }
->>>>>>> 126b34bc04a5f4e097d47faf9169315981a2aaef
+
 
     public void CreateDeck(){
         Event eg[] = null;

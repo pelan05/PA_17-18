@@ -1,10 +1,6 @@
 package logicaJogo;
 
-<<<<<<< HEAD
-import logicaJogo.Events.Event;
-=======
 import logicaJogo.events.Event;
->>>>>>> 126b34bc04a5f4e097d47faf9169315981a2aaef
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -48,7 +44,6 @@ public class Freader extends IOException {
         return null;
     }
 
-<<<<<<< HEAD
     public void ReadFile(String fileName) {
         this.fileName = fileName;
 
@@ -81,6 +76,4 @@ public class Freader extends IOException {
 
 
 
-=======
->>>>>>> 126b34bc04a5f4e097d47faf9169315981a2aaef
 }

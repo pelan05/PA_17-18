@@ -18,12 +18,12 @@ public class Advance extends EnemyAdvancement {
 
     @Override
     public void save(Game game){
-        EnemyCard aux = game.getEnemyCard();//metodo nao existe
+        /*EnemyCard aux = game.getEnemyCard();//metodo nao existe
 
         switch (name){
             case RAMS: aux.advanceRams();
             case TOWER: aux.advanceTower();
             case LADDERS: aux.advanceLadder();
-        }
+        }*/
     }
 }

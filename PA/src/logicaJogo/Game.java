@@ -19,7 +19,7 @@ public class Game {
 
     private ArrayList<EventCard> deck;
 
-    Game(){
+    public Game(){
         this.dice = new DiceRoll();
         this.status = new StatusCard();
         this.enemy = new EnemyCard();

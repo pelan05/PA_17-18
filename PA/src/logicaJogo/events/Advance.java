@@ -18,7 +18,7 @@ public class Advance extends EnemyAdvancement {
 
     @Override
     public void save(Game game){
-        EnemyCard aux = game.getEnemyCard();
+        EnemyCard aux = game.getEnemyCard();//metodo nao existe
 
         switch (name){
             case RAMS: aux.advanceRams();

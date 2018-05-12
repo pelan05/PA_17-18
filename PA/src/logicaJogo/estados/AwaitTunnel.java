@@ -50,10 +50,10 @@ public class AwaitTunnel implements Estado{
     public Estado paidTunnelMovement() {
         if(player.getActonPoints() == 0)
             return this;
-        else
+        else{
             player.reduceActionPoints();
             return return new AwaitPlayerAction();
-        
+        }
         
         
     }

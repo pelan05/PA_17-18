@@ -10,9 +10,15 @@ public class EnemyCard extends Card{
     public EnemyCard(){
         super();
 
+<<<<<<< HEAD
         this.ladders = new row(4,4, 2);
         this.rams = new row(4,4, 3);
         this.tower = new row(4, 4, 4);
+=======
+        this.ladders = new row(4,4);
+        this.rams = new row(4,4);
+        this.tower = new row(4, 4);
+>>>>>>> 126b34bc04a5f4e097d47faf9169315981a2aaef
         this.trebuchet = new row(3, 3);
     }
 

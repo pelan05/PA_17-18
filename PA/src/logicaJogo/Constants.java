@@ -3,6 +3,10 @@ import java.util.*;
 
 public interface Constants {
 
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 126b34bc04a5f4e097d47faf9169315981a2aaef
     final static String MENU_STR = "text/main.txt";
 
     final static String CARD1 = "logicaJogo/Card1";

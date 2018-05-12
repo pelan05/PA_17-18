@@ -1,5 +1,5 @@
 package logicaJogo.cartas;
-import logicaJogo.events.*;
+import logicaJogo.events.Event;
 
 
 public class EventCard extends Card {

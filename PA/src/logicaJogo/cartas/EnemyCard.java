@@ -57,7 +57,19 @@ public class EnemyCard extends Card{
         tower = null;
     }
 
+    public row getRow(int n) {
+        switch (n) {
+            case 0: return ladders;
+            case 1: return rams;
+            case 2: return tower;
+        }
 
+        return null;
+    }
+
+    public int inCircleSpace(row ROW){
+        return ROW.getValue();
+    }
 
     @Override
     public String toString(){

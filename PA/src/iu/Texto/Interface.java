@@ -50,8 +50,8 @@ public class Interface {
             else if (Obgame.getState() instanceof AwaitTunnelChoice)
                 getUserInputTunnelChoice();
 
-            else if (Obgame.getState() instanceof AwaitTrackDirection)
-                getUserInputAwaitngTrackDirection();
+            else if (Obgame.getState() instanceof AwaitRowDirection)
+                getUserInputAwaitngRowDirection();
         }
     }
 
@@ -104,7 +104,7 @@ public class Interface {
 
        if (value == 1 || value == 2)
             if (!trackdirection) {
-                Obgame.setState(new AwaitTrackDirection(Obgame.getGame()));
+                Obgame.setState(new AwaitRowDirection(Obgame.getGame()));
                 return;
             }
 
@@ -154,7 +154,7 @@ public class Interface {
         return s.equalsIgnoreCase("Y") || s.equalsIgnoreCase("S");
     }
 
-    private void getUserInputAwaitngTrackDirection() {
+    private void getUserInputAwaitngRowDirection() {
         int value;
 
         System.out.println("1 - Wall");

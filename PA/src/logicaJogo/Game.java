@@ -13,6 +13,7 @@ public class Game {
 
     private boolean over;
     private boolean defaultTunnelMovement;
+    private int rowChoice;
 
     private int actionPoints;
     private int day;
@@ -85,13 +86,13 @@ public class Game {
         return freeTunnelMov;
     }*/
 
-    /*public void setrowChoice(int t) {
-        row = t;
-    }*/
+    public void setRowChoice(int row) {
+        rowChoice = row;
+    }
 
-   /* public int getTrackChoice() {
-        return trackChoice;
-    }*/
+    public int getRowChoice() {
+        return rowChoice;
+    }
 
     public boolean getGameResult() {
         return over;
@@ -161,6 +162,12 @@ public class Game {
         drms.clear();
     }
 
+    public HashMap<DRM, Integer> getDRM(){
+        return drms;
+    }
+
+
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -172,4 +179,6 @@ public class Game {
 
         return sb.toString();
     }
+
+
 }

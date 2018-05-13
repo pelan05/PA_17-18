@@ -7,6 +7,7 @@ public interface Estado {
     Estado endOfActions();
     Estado Beggining();
 
+    Estado selectRow(int row);
     Estado GameResult();
 
     Estado archersAttack();
@@ -18,6 +19,8 @@ public interface Estado {
     Estado closeCombat();
 
     Estado freeTunnelMovement();
+    Estado enterTunnel();
+    Estado exitTunnel();
     Estado paidTunnelMovement();
     Estado tunnelMovement();
 

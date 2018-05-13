@@ -39,6 +39,10 @@ public class row {
         this.value = value;
     }
 
+    public int getStrength() {
+        return strength;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

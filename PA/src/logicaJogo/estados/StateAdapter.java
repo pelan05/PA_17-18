@@ -29,6 +29,9 @@ public class StateAdapter implements Estado {
     @Override
     public Estado Beggining(){return this;}
 
+    @Override
+    public Estado selectRow(int row){return this;}
+
     //-------------------------------------------------
 
     @Override
@@ -63,6 +66,12 @@ public class StateAdapter implements Estado {
 
     @Override
     public Estado paidTunnelMovement() {return this;}
+
+    @Override
+    public Estado exitTunnel(){return this;}
+
+    @Override
+    public Estado enterTunnel(){return this;}
 
     //--------------------------------------------------
 

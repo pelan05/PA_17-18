@@ -38,12 +38,6 @@ public class ObservavleGame {
         game.clearInfo();
     }
 
-    @Override
-    public String toString() {
-        return game.toString();
-    }
-
-    // -------- State methods --------
     public void start() {
         setState(getState().Beggining());
     }
@@ -51,9 +45,6 @@ public class ObservavleGame {
     public void draw() {
         setState(getState().drawsTopCard());
     }
-
-
-    // -------- Player Action methods ------
 
     public void archersAttack() {
         setState(getState().archersAttack());
@@ -91,25 +82,28 @@ public class ObservavleGame {
         setState(getState().tunnelMovement());
     }
 
-    // ------- Tunnel Movement methods ---------
-
     public void enterTunnel() {
         setState(getState().enterTunnel());
     }
 
     public void exitTunnel() {
-        setState(getState().tunnelMovement());
+        setState(getState().exitTunnel());
     }
 
     public void advanceTunnel() {
-        setState(getState().advanceTunnel());
+        setState(getState().tunnelMovement());
     }
 
     public void fastMovement() {
         setState(getState().paidTunnelMovement());
     }
 
-    public void selectTrack(int track) {
-        setState(getState().selectTrack(track));
+    public void selectRowChoice(int row) {
+        setState(getState().selectRow(row));
+    }
+
+    @Override
+    public String toString() {
+        return game.toString();
     }
 }

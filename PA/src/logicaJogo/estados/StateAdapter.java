@@ -1,7 +1,7 @@
 package logicaJogo.estados;
 
 import logicaJogo.Game;
-import logicaJogo.ObservavleGame;
+import logicaJogo.ObservableGame;
 import logicaJogo.cartas.row;
 
 public class StateAdapter implements Estado {

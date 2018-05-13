@@ -2,18 +2,18 @@ package iu.Texto;
 import java.io.*;
 import java.util.*;
 import logicaJogo.Game;
-import logicaJogo.ObservavleGame;
+import logicaJogo.ObservableGame;
 import logicaJogo.cartas.*;
 import logicaJogo.estados.*;
 
 
 public class Interface {
 
-    private ObservavleGame Obgame;
+    private ObservableGame Obgame;
     private Scanner scanner;
     private boolean trackdirection;
 
-    public Interface(ObservavleGame Obgame) {
+    public Interface(ObservableGame Obgame) {
         this.Obgame = Obgame;
         scanner = new Scanner(System.in);
         trackdirection = false;

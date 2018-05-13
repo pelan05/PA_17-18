@@ -1,7 +1,7 @@
 package logicaJogo.estados;
 
 import logicaJogo.Game;
-import logicaJogo.ObservavleGame;
+import logicaJogo.ObservableGame;
 
 public class AwaitBeggining extends StateAdapter {
 

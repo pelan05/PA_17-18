@@ -5,11 +5,11 @@ import logicaJogo.estados.Estado;
 
 import java.util.ArrayList;
 
-public class ObservavleGame {
+public class ObservableGame {
     private Game game;
     private Estado state;
 
-    public ObservavleGame() {
+    public ObservableGame() {
         this.game = new Game();
         this.state = new AwaitBeggining(game);
     }

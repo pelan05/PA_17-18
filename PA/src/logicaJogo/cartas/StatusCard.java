@@ -65,8 +65,27 @@ public class StatusCard extends Card {
         if(tunnel.getValue() < tunnel.getSize())
             tunnel.setValueUp();
     }
-    public void decreaseTunnel(){
-        if(tunnel.getValue() > 0)
-            tunnel.setValueDown();
+
+    public void resetTunnel(){
+        tunnel.setValue(0);
+    }
+
+    public void resetExtraSupplies(){
+        extraSupplies.setValue(0);
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("--> Status Card <--");
+        sb.append(morale.toString()).append('\n');
+        sb.append(wall.toString()).append('\n');
+        sb.append(supplies.toString()).append('\n');
+        sb.append(tunnel.toString()).append('\n');
+        sb.append(extraSupplies.toString()).append('\n');
+        sb.append("--> Status Card <--");
+
+        return sb.toString();
     }
 }

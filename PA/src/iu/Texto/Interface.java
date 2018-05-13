@@ -1,207 +1,206 @@
 package iu.Texto;
+import java.io.*;
 import java.util.*;
 import logicaJogo.Game;
+import logicaJogo.ObservavleGame;
 import logicaJogo.cartas.*;
 import logicaJogo.estados.*;
 
 
 public class Interface {
-    
-    protected static Game g = new Game();;
-    Scanner sc = new Scanner(System.in);
-    
-    
-    
-    public Interface(){
-        menuInicial();
+
+    private ObservavleGame Obgame;
+    private Scanner scanner;
+    private boolean trackdirection;
+
+    public Interface(ObservavleGame Obgame) {
+        this.Obgame = Obgame;
+        scanner = new Scanner(System.in);
+        trackdirection = false;
     }
-    
-    public void menuInicial(){
-    int val = 0;
-        
-        System.out.println("--------------------------------------------");
-        System.out.println("-------------Nine Card Siege----------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("----------1-Let's Play----------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        
-        
-        val = sc.nextInt();
-       
-        
-        
-        
+
+    public void showGame() {
+        System.out.println(Obgame);
     }
-    
-    
-    public void mainScreen(){
-    int val = 0;
-        
-        
-        do{
-        
-        System.out.println("------------------Day--" + g.getDay() + "--------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("----Status:----------------Enemy:-----------");
-        System.out.println("--------------------------------------------");
-        System.out.println("----WallStrength----" + g.getStatus().getWallStrength() + "------Ladders---" + g.getEnemy().getLadders() + "------");
-        System.out.println("----Morale----------" + g.getStatus().getMorale() + "------Ram-------" + g.getEnemy().getRams() + "------");
-        System.out.println("----Supplies--------" + g.getStatus().getSupplies() + "------Tower-----" + g.getEnemy().getTower() + "------");
-        System.out.println("---------------------------Trebuchet-" + g.getEnemy().getTrebuchets() + "------");
-        System.out.println("----Tunnel----------" + g.getStatus().getTunnel() + "-----------------------");
-        System.out.println("----CarriedSupplies-" + g.getStatus().getExtraSupplies() + "-----------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("----AP-" + g.getActionPoints() + "--------------------ID-Carta-"/* + ID DA CARTA getID()*/ + "-----");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        val = sc.nextInt();
-        
-        }while(/*!g.getOver()*/true);
-        
-        
-        
-    
+
+    public void menuInicial() {
+        while (!(Obgame.getState() instanceof GameOver)) {
+
+            if (Obgame.getInfo().size() > 0) {
+                System.out.println("");
+
+                Obgame.getInfo().forEach((info) -> {
+                    System.out.println("--> " + info);
+                });
+
+                Obgame.clearInfo();
+            }
+
+            System.out.println(Obgame.toString());
+
+            if (Obgame.getState() instanceof AwaitBeggining)
+                getUserInputAwaitingStart();
+
+            else if(Obgame.getState() instanceof AwaitTopCard)
+                getUserInputAwaitingTopCard();
+
+            else if(Obgame.getState() instanceof AwaitPlayerAction)
+                getUserInputAwaitingActionChoice();
+
+            else if (Obgame.getState() instanceof AwaitTunnelChoice)
+                getUserInputTunnelChoice();
+
+            else if (Obgame.getState() instanceof AwaitTrackDirection)
+                getUserInputAwaitngTrackDirection();
+        }
     }
-    
-    public void choiceScreen(){
-    int val = 0;
-    
-    do{
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("---------" /*+ g.getEvent().getAvailable()*/ + "1.ArchersAttack-------------------");/**///esolher track
-        System.out.println("---------" /*+ g.getEvent().getAvailable()*/ + "2.BoilingWaterAttack--------------");/**/
-        System.out.println("---------" /*+ g.getEvent().getAvailable()*/ + "3.CloseCombatAttack---------------");
-        System.out.println("---------" /*+ g.getEvent().getAvailable()*/ + "4.Coupure-------------------------");
-        System.out.println("---------" /*+ g.getEvent().getAvailable()*/ + "5.RallyTroops---------------------");/**///gastar ou nao gastar? eis a questão
-        System.out.println("---------" /*+ g.getEvent().getAvailable()*/ + "6.TunnelMovement------------------");/**/
-        System.out.println("---------" /*+ g.getEvent().getAvailable()*/ + "7.SupplyRaid----------------------");
-        System.out.println("---------" /*+ g.getEvent().getAvailable()*/ + "8.Sabotage------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        
-        
-        val = sc.nextInt();
-        
-        }while(val < 1 || val > 8);
-    
-        //choice method
-        switch (val){
+
+    private void getUserInputAwaitingTopCard() {
+        System.out.println("Press any key to draw card!");
+        System.out.println(">> ");
+
+        scanner.nextLine();
+
+        Obgame.draw();
+    }
+
+    private void getUserInputAwaitingStart() {
+        int value;
+
+        System.out.println("1 - Start Game");
+
+        System.out.println(">> ");
+
+        while(!scanner.hasNextInt())
+            scanner.next();
+
+        value = scanner.nextInt();
+
+
+        switch (value) {
+            case 1: Obgame.start();
+            default: break;
+        }
+    }
+
+    private void getUserInputAwaitingActionChoice() {
+        int value;
+
+        System.out.println("1 - Archers Attack");
+        System.out.println("2 - Boiling Water Attack");
+        System.out.println("3 - Close Combat Attack");
+        System.out.println("4 - Coupure");
+        System.out.println("5 - Rally Troops");
+        System.out.println("6 - Tunnel Movement");
+        System.out.println("7 - Supply Raid");
+        System.out.println("8 - Sabotage");
+        System.out.println("10 - End Turn");
+        System.out.println(">> ");
+
+        while (!scanner.hasNextInt())
+            scanner.next();
+
+        value = scanner.nextInt();
+
+       if (value == 1 || value == 2)
+            if (!trackdirection) {
+                Obgame.setState(new AwaitTrackDirection(Obgame.getGame()));
+                return;
+            }
+
+        switch (value) {
             case 1:
+                Obgame.archersAttack();
                 break;
             case 2:
+                Obgame.boilingWaterAttack();
                 break;
             case 3:
+                Obgame.closeCombat();
                 break;
             case 4:
+                Obgame.coupure();
                 break;
             case 5:
+                Obgame.rallyTroops(applyDRM());
                 break;
             case 6:
+                Obgame.tunnelMovement();
                 break;
             case 7:
+                Obgame.supplyRaid();
                 break;
             case 8:
+                Obgame.sabotage();
                 break;
-        
+            case 9:
+                Obgame.endTurn();
+                break;
         }
-         
+
+        // if it reached here it already performed the attack
+        // so, we can reset track selection
+       trackdirection = false;
     }
-    
-    public void trackScreen(){
-        int val = 0;
-        do{
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("---------Choose-the-track:------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("---------1.Ladders--------------------------");
-        System.out.println("---------2.Ram------------------------------");
-        System.out.println("---------3.Tower----------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        
-        
-        val = sc.nextInt();
-    
-        
-        }while(val < 1 || val > 3);
-        
-        
-        //choice method
-        switch (val){
+
+    private Boolean applyDRM() {
+        System.out.println("Do you wish to spend 1 supply to apply +1 DRM in moralle roll?");
+        System.out.println(">> ");
+
+        while (!scanner.hasNextLine())
+            scanner.next();
+
+        String s = scanner.nextLine();
+        return s.equalsIgnoreCase("Y") || s.equalsIgnoreCase("S");
+    }
+
+    private void getUserInputAwaitngTrackDirection() {
+        int value;
+
+        System.out.println("1 - Wall");
+        System.out.println("2 - Gates");
+        System.out.println("3 - Trebuchets");
+        System.out.println(">> ");
+
+        while (!scanner.hasNextInt())
+            scanner.next();
+
+        value = scanner.nextInt();
+
+       // Obgame.selectTrack(value);
+    }
+
+    private void getUserInputTunnelChoice() {
+        int value;
+
+        System.out.println("1 - Enter Tunnel (1 AP)");
+        System.out.println("2 - Exit Tunnel (free)");
+        System.out.println("3 - Advance (free or 1 AP)");
+        System.out.println("4 - Move Back (free or 1 AP)");
+        System.out.println("5 - FastMovement (1 AP)");
+        System.out.println(">> ");
+
+        while (!scanner.hasNextInt())
+            scanner.next();
+
+        value = scanner.nextInt();
+
+        switch(value) {
             case 1:
+                //Obgame.;
                 break;
             case 2:
+                //Obgame.exitTunnel();
                 break;
             case 3:
+                Obgame.tunnelMovement();
+                break;
+            case 4:
+                //Obgame.moveBackTunnel();
+                break;
+            case 5:
+                Obgame.fastMovement();
                 break;
         }
-        
     }
-    
-    public void paymentScreen(){
-        int val = 0;
-        do{
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("------Do you wish to pay for the bonus?-----");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("----------1.Yes OFC-------------------------");
-        System.out.println("----------2.No Señor------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        
-        
-        val = sc.nextInt();
-        
-
-
-        }while(val < 1 || val > 2);
-
-        //choice method
-        switch (val){
-            case 1:
-                break;
-            case 2:
-                break;
-        }
-        
-    }
-    
-    
-    public static void main(String[] args) {
-         
-        Interface i = new Interface();
-        
-        
-    }
-    
 }

@@ -1,69 +1,36 @@
 package logicaJogo.estados;
-import java.util.*;
-import logicaJogo.*;
 
+import logicaJogo.Game;
+import logicaJogo.cartas.EventCard;
+import logicaJogo.events.Event;
 
-public class AwaitTopCard implements Estado{
-
-    @Override
-    public Estado drawsTopCard() {
-    
-        return new AwaitPlayerAction();
-    
+public class AwaitTopCard extends StateAdapter {
+    public AwaitTopCard(Game game){
+        super(game);
     }
 
     @Override
-    public Estado endOfActions() {return this;}
+    public Estado drawsTopCard(){
+        EventCard card = game.drawCard();
+        game.addInfo("Drawn Card: " + card.toString());
 
-    @Override
-    public Estado winGame() {return this;}
+        Event currentEvent = card.getEvent(game.getDay());
+        game.addInfo("Applied Event: " + currentEvent.toString());
 
-    @Override
-    public Estado loseGame() {
-        
-        //lose the game
-        
-        return this;
+        // add action points
+        //game.addAP(currentEvent.getActionPointAllowance());
+
+        // Event Phase
+        currentEvent.action(game);
+
+        // Enemy Movement Phase
+        //currentEvent.applyEnemyMovement(game);
+
+        // check if there are 3 enemies in CCA => loose
+        if (game.getEnemy().checkCCA() == 3) {
+            return new GameOver(game);
+        }
+
+        return new AwaitPlayerAction(getGame());
     }
-
-    @Override
-    public Estado archersAttack() {return this;}
-
-    @Override
-    public Estado endArchersAttack() {return this;}
-
-    @Override
-    public Estado boilingWater() {return this;}
-
-    @Override
-    public Estado endBoilingWater() {return this;}
-
-    @Override
-    public Estado tunnelMovement() {return this;}
-
-    @Override
-    public Estado freeTunnelMovement() {return this;}
-
-    @Override
-    public Estado paidTunnelMovement() {return this;}
-
-    @Override
-    public Estado rallyTroops() {return this;}
-
-    @Override
-    public Estado endRallyTroops() {return this;}
-
-    @Override
-    public Estado closeCombat() {return this;}
-
-    @Override
-    public Estado coupure() {return this;}
-
-    @Override
-    public Estado supplyRaid() {return this;}
-
-    @Override
-    public Estado sabotage() {return this;}
-    
-    
 }

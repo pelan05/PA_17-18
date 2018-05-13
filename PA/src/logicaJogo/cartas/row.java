@@ -34,4 +34,22 @@ public class row {
         if (value > 0)
             this.value--;
     }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        if (strength > 0)
+            sb.append("Força: ").append(strength).append("\n");
+
+        sb.append(": ");
+
+            sb.append("[").append( (0 == value)? "X": 0 ).append("] ");
+
+        return sb.toString();
+    }
 }

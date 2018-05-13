@@ -1,130 +1,175 @@
 package logicaJogo;
 
-import logicaJogo.events.Event;
+import logicaJogo.events.*;
 import logicaJogo.cartas.EnemyCard;
 import logicaJogo.cartas.EventCard;
 import logicaJogo.cartas.StatusCard;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class Game {
-    
+
     private boolean over;
-    
+    private boolean defaultTunnelMovement;
+
     private int actionPoints;
     private int day;
     private int iteration; //1-7
-	
+
     private DiceRoll dice;
+
+    private HashMap<DRM, Integer> drms;
 
     private StatusCard status;
     private EnemyCard enemy;
 
     private ArrayList<EventCard> deck;
+    private ArrayList<String> info;
 
-    public Game(){
-        
-        this.over = false;
-        
+    public Game() {
         this.dice = new DiceRoll();
-        
         this.status = new StatusCard();
         this.enemy = new EnemyCard();
-	
-        this.actionPoints = 0;
-	
-        this.day = 1;
-        
-        this.iteration = 0;
-        
-        CreateDeck();
-        
-		
-	this.iteration = 0;
-        
-        /*
-	for (int i = 0; i < 7 ; i++) {
-            this.deck.add(new EventCard());
-        }
-	*/
-		
+
+        day = 1;
+        iteration = actionPoints = iteration = 0;
+        over = defaultTunnelMovement = false;
+
+        drms = new HashMap();
+        drms.put(DRM.SABOTAGE, 0);
+        drms.put(DRM.MORALE, 0);
+        drms.put(DRM.COUPURE, 0);
+        drms.put(DRM.RAID, 0);
+        drms.put(DRM.RAM, 0);
+        drms.put(DRM.TOWER, 0);
+        drms.put(DRM.TREBUCHET, 0);
+        drms.put(DRM.CQB, 0);
+        drms.put(DRM.CIRCLE, 0);
+
+        deck = new ArrayList<>();
+        info = new ArrayList<>();
+        System.out.println("estou aqui!");
     }
 
 
-    public void CreateDeck(){
-        Event eg[] = null;
-        Freader read = new Freader();
-        String file = "Card1.txt";
+    //Deck Stuff
+
+    public void CreateDeck() {
         deck.clear();
-
-
-        for (int i = 0; i < 7; i++) {
-            read.ReadFile(file, eg);
-            deck.add(new EventCard( i+1, eg[0], eg[1], eg[2]));
-            file = "Card" + (Integer.parseInt(file.substring(1,file.length()))+1) + ".txt";
-        }
-
-        ShuffleDeck();
+        deck.add(new EventCard(1, new TrebuchetEvent(), new TrebuchetEvent(), new TrebuchetEvent()));
+        deck.add(new EventCard(2, new Illness(), new GuardsDistracted(), new TrebuchetEvent()));
+        deck.add(new EventCard(3, new SuppliesSpoiled(), new BadWeather(), new BoilingOil()));
+        deck.add(new EventCard(4, new DeathofaLeader(), new GateFortified(), new FlamingArrows()));
+        deck.add(new EventCard(5, new VolleyofArrows(), new Collapsed(), new RepairedTrebuchet()));
+        deck.add(new EventCard(6, new CoverofDarkness(), new EnemyFatigue(), new Rally()));
+        deck.add(new EventCard(7, new DeterminedEnemy(), new IronShields(), new Faith()));
     }
 
-    public void ShuffleDeck(){
+    public void ShuffleDeck() {
         Collections.shuffle(deck);
     }
-	
-    public boolean getOver(){
+
+    public Boolean DeckEmpty() {
+        return deck.isEmpty();
+    }
+
+    //----------------------------------------------
+
+    public EventCard drawCard() {
+        return deck.remove(0);
+    }
+
+    /*public Boolean getFreeMov() {
+        return freeTunnelMov;
+    }*/
+
+    /*public void setrowChoice(int t) {
+        row = t;
+    }*/
+
+   /* public int getTrackChoice() {
+        return trackChoice;
+    }*/
+
+    public boolean getGameResult() {
         return over;
     }
-    
-    public void setActionPoints(int ap){
+
+    public void setActionPoints(int ap) {
         this.actionPoints = ap;
     }
-    
-    public int getActionPoints(){
+
+    public int getActionPoints() {
         return this.actionPoints;
     }
-    
-    public int getDay(){
+
+    public int getDay() {
         return this.day;
     }
-    
-    public int getIt(){
+
+    public int getIteration() {
         return this.iteration;
     }
-    
-    public StatusCard getStatus(){
+
+    public StatusCard getStatus() {
         return status;
     }
-    
-    public EnemyCard getEnemy(){
+
+    public EnemyCard getEnemy() {
         return enemy;
     }
-    
-    
-    public int getRoll(){
-        return dice.getRoll();
-    }
-    
-    
-    
-    public void addDay(){
+
+    public void addDay() {
         this.day++;
     }
-    /*
-    public ArrayList getArrayList(){
-        return deck;
+
+    public int getRoll() {
+        return dice.getRoll();
     }
-	*/
-	
-    
-    
-    //Events Methods
-    
-    
-    
-    
-    
-    
-	
-	
+
+    public void addInfo(String info) {
+        this.info.add(info);
+    }
+
+    public ArrayList<String> getInfo() {
+        return info;
+    }
+
+    public void clearInfo() {
+        info.clear();
+    }
+
+    public void newTurn() {
+        defaultTunnelMovement = true;
+        clearDRM();
+        actionPoints = 0;
+
+        if (status.getTunnel() == 3)
+            if (dice.getRoll() == 1)
+                capture();
+    }
+
+    public void capture() {
+        status.resetTunnel();
+        status.resetExtraSupplies();
+        status.decreaseMorale();
+    }
+
+    public void clearDRM(){
+        drms.clear();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(status.toString());
+        sb.append(enemy.toString());
+
+        sb.append("Action Points: ").append(actionPoints).append("\n");
+
+        return sb.toString();
+    }
 }

@@ -30,4 +30,17 @@ public class Event {
     public void ApplyEnemyAdvancementOrder(Game game) {
         EnemyAdvancementOrder.forEach((move) -> {move.action(game);});
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb  .append("----- ")
+                .append(name).append(": ")
+                .append(getActionPointAvaible())
+                .append(" -----").append("\n")
+                .append(description).append("\n");
+
+        return sb.toString();
+    }
 }

@@ -13,9 +13,6 @@ public class EnemyCard extends Card{
         this.ladders = new row(4,4, 2);
         this.rams = new row(4,4, 3);
         this.tower = new row(4, 4, 4);
-        this.ladders = new row(4,4);
-        this.rams = new row(4,4);
-        this.tower = new row(4, 4);
         this.trebuchet = new row(3, 3);
     }
 
@@ -54,5 +51,25 @@ public class EnemyCard extends Card{
         if (tower.getValue() == 0) enemiesInCCA++;
 
         return enemiesInCCA;
+    }
+
+    public void removeTower(){
+        tower = null;
+    }
+
+
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\n--> Enemy Card <--\n");
+        sb.append("Ladders: ").append(ladders.toString()).append('\n');
+        sb.append("Rams: ").append(rams.toString()).append('\n');
+        sb.append("Tower: ").append(tower.toString()).append('\n');
+        sb.append("Trebuchet: ").append(trebuchet.toString()).append('\n');
+        sb.append("--> Enemy Card <--\n");
+
+        return sb.toString();
     }
 }

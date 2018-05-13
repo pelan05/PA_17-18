@@ -4,8 +4,8 @@ import logicaJogo.cartas.*;
 import logicaJogo.Game;
 import logicaJogo.events.RegularMove;
 
-public class TrebuchetEvent1 extends RegularMove {
-    public TrebuchetEvent1() {
+public class TrebuchetEvent extends RegularMove {
+    public TrebuchetEvent() {
         
         /*switch(g.getDay())*/
         

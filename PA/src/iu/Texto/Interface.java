@@ -160,7 +160,7 @@ public class Interface {
         System.out.println("1 - Wall");
         System.out.println("2 - Gates");
         System.out.println("3 - Trebuchets");
-        System.out.println(">> ");
+        System.out.println("--> ");
 
         while (!scanner.hasNextInt())
             scanner.next();

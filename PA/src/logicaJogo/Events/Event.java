@@ -6,16 +6,9 @@ import java.util.ArrayList;
 public class Event {
     public int ActionPointAvaible;
     public String name;
-    public String descprition;
+    public String description;
 
     public ArrayList<EnemyAdvancement> EnemyAdvancementOrder;
-
-    public Event(int ActionPointAvaible, String name, String description){
-        this.ActionPointAvaible = ActionPointAvaible;
-        this.name = name;
-        this.descprition = description;
-        //this.EnemyAdvancementOrder
-    }
 
     public int getActionPointAvaible() {
         return ActionPointAvaible;
@@ -26,14 +19,15 @@ public class Event {
     }
 
     public String getDescprition() {
-        return descprition;
+        return description;
     }
 
-    public void save(Game game){
+
+    public void action(Game g){
 
     }
 
     public void ApplyEnemyAdvancementOrder(Game game) {
-        EnemyAdvancementOrder.forEach((move) -> {move.save(game);});
+        EnemyAdvancementOrder.forEach((move) -> {move.action(game);});
     }
 }

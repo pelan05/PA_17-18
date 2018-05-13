@@ -101,6 +101,11 @@ public class Game {
     }
     
     
+    public int getRoll(){
+        return dice.getRoll();
+    }
+    
+    
     
     public void addDay(){
         this.day++;
@@ -111,6 +116,15 @@ public class Game {
     }
 	*/
 	
+    
+    
+    //Events Methods
+    
+    
+    
+    
+    
+    
 	
 	
 }

@@ -12,21 +12,17 @@ public class AwaitTopCard extends StateAdapter {
     @Override
     public Estado drawsTopCard(){
         EventCard card = game.drawCard();
-        game.addInfo("Drawn Card: " + card.toString());
+        game.addInfo("Drawn Card: " + card.toString() + "\n");
 
         Event currentEvent = card.getEvent(game.getDay());
-        game.addInfo("Applied Event: " + currentEvent.toString());
+        game.addInfo("Applied Event: " + currentEvent.toString() + "\n");
 
-        // add action points
-        //game.addAP(currentEvent.getActionPointAllowance());
+        game.addActionPoints(currentEvent.getActionPointAvaible());
 
-        // Event Phase
         currentEvent.action(game);
 
-        // Enemy Movement Phase
-        //currentEvent.applyEnemyMovement(game);
+        currentEvent.ApplyEnemyAdvancementOrder(game);
 
-        // check if there are 3 enemies in CCA => loose
         if (game.getEnemy().checkCCA() == 3) {
             return new GameOver(game);
         }

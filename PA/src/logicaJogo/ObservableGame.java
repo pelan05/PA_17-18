@@ -62,8 +62,8 @@ public class ObservableGame {
         setState(getState().coupure());
     }
 
-    public void rallyTroops(boolean supplies) {
-        setState(getState().rallyTroops(supplies));
+    public void rallyTroops(Boolean applyDRM) {
+        setState(getState().rallyTroops(applyDRM));
     }
 
     public void supplyRaid() {
@@ -71,11 +71,11 @@ public class ObservableGame {
     }
 
     public void sabotage() {
-        setState(getState().sabotage());
+        setState(getState().sabotage(0));
     }
 
-    public void endTurn() {
-        setState(getState().endOfActions());
+    public void endOfTurn() {
+        setState(getState().endOfTurn());
     }
 
     public void tunnelMovement() {
@@ -88,10 +88,6 @@ public class ObservableGame {
 
     public void exitTunnel() {
         setState(getState().exitTunnel());
-    }
-
-    public void advanceTunnel() {
-        setState(getState().tunnelMovement());
     }
 
     public void fastMovement() {

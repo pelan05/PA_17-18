@@ -4,8 +4,8 @@ import logicaJogo.cartas.row;
 
 public interface Estado {
     Estado drawsTopCard();
-    Estado endOfActions();
     Estado Beggining();
+    Estado endOfTurn();
 
     Estado selectRow(int row);
     Estado GameResult();
@@ -14,8 +14,8 @@ public interface Estado {
     Estado boilingWater();
     Estado coupure();
     Estado supplyRaid();
-    Estado sabotage();
-    Estado rallyTroops(boolean supplies);
+    Estado sabotage(int DRMval);
+    Estado rallyTroops(boolean DRM);
     Estado closeCombat();
 
     Estado enterTunnel();

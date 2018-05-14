@@ -134,17 +134,15 @@ public class Interface {
                 Obgame.sabotage();
                 break;
             case 9:
-                Obgame.endTurn();
+                Obgame.endOfTurn();
                 break;
         }
 
-        // if it reached here it already performed the attack
-        // so, we can reset track selection
        trackdirection = false;
     }
 
     private Boolean applyDRM() {
-        System.out.println("Do you wish to spend 1 supply to apply +1 DRM in moralle roll?");
+        System.out.println("Spend 1 supply to apply +1 DRM in moralle roll?");
         System.out.println(">> ");
 
         while (!scanner.hasNextLine())
@@ -167,17 +165,17 @@ public class Interface {
 
         value = scanner.nextInt();
 
-       // Obgame.selectTrack(value);
+        Obgame.selectRowChoice(value);
     }
 
     private void getUserInputTunnelChoice() {
         int value;
 
-        System.out.println("1 - Enter Tunnel (1 AP)");
-        System.out.println("2 - Exit Tunnel (free)");
-        System.out.println("3 - Advance (free or 1 AP)");
-        System.out.println("4 - Move Back (free or 1 AP)");
-        System.out.println("5 - FastMovement (1 AP)");
+        System.out.println("1 - Enter Tunnel ");
+        System.out.println("2 - Exit Tunnel ");
+        System.out.println("3 - Advance ");
+        System.out.println("4 - Exit ");
+        System.out.println("5 - FastMovement ");
         System.out.println(">> ");
 
         while (!scanner.hasNextInt())
@@ -187,16 +185,16 @@ public class Interface {
 
         switch(value) {
             case 1:
-                //Obgame.;
+                Obgame.enterTunnel();
                 break;
             case 2:
-                //Obgame.exitTunnel();
+                Obgame.exitTunnel();
                 break;
             case 3:
                 Obgame.tunnelMovement();
                 break;
             case 4:
-                //Obgame.moveBackTunnel();
+                Obgame.exitTunnel();
                 break;
             case 5:
                 Obgame.fastMovement();

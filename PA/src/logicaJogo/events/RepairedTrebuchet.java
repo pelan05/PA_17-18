@@ -11,7 +11,7 @@ public class RepairedTrebuchet extends RegularMove {
 
     @Override
     public void action(Game game){
-        game.getEnemy().addTrebuchet();
+        game.getEnemy().increaseTrebuchet();
         game.getDRM().put(DRM.COUPURE, 1);
     }
 }

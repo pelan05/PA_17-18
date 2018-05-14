@@ -24,9 +24,6 @@ public class StateAdapter implements Estado {
     public Estado drawsTopCard() {return this;}
 
     @Override
-    public Estado endOfActions() {return this;}
-
-    @Override
     public Estado Beggining(){return this;}
 
     @Override
@@ -39,7 +36,7 @@ public class StateAdapter implements Estado {
     public Estado boilingWater() {return this;}
 
     @Override
-    public Estado rallyTroops(boolean supplies) {return this;}
+    public Estado rallyTroops(boolean appDRM) {return this;}
 
     @Override
     public Estado closeCombat() {return this;}
@@ -51,7 +48,7 @@ public class StateAdapter implements Estado {
     public Estado supplyRaid() {return this;}
 
     @Override
-    public Estado sabotage() {return this;}
+    public Estado sabotage(int DRMval) {return this;}
     
     @Override
     public Estado tunnelMovement() {return this;}
@@ -67,4 +64,7 @@ public class StateAdapter implements Estado {
 
     @Override
     public Estado GameResult(){return this;}
+
+    @Override
+    public Estado endOfTurn(){return this;}
 }

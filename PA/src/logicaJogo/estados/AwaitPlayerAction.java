@@ -4,6 +4,8 @@ import logicaJogo.DRM;
 import logicaJogo.Game;
 import logicaJogo.cartas.row;
 
+import java.util.ArrayList;
+
 public class AwaitPlayerAction extends StateAdapter {
     public AwaitPlayerAction(Game game){
         super(game);
@@ -35,7 +37,7 @@ public class AwaitPlayerAction extends StateAdapter {
         if(diceRoll > ROW.getStrength())
             ROW.setValueUp();
 
-        return this;
+            return this;
     }
 
     @Override
@@ -71,121 +73,129 @@ public class AwaitPlayerAction extends StateAdapter {
         getGame().addInfo("Roll: " + (diceRoll+1));
         if ((diceRoll + 1) > ROW.getStrength())
             ROW.setValueUp();
-        
-        
-        
-        return this;
+
+            return this;
     }
 
     @Override
     public Estado coupure(){
-        int diceRoll = getGame().getRoll() + getGame().getDRM().get(DRM.COUPURE);
-        
-        if(diceRoll > 4)
-             getGame().getStatus().increaseWall();
-        
-        return this;
+        int roll = getGame().getRoll() + getGame().getDRM().get(DRM.COUPURE);
+
+        if (roll > 4)
+            getGame().getStatus().increaseWall();
+
+            return this;
     }
 
     @Override
     public Estado supplyRaid(){
-        //if carried supplies are max already
-        if(getGame().getStatus().getExtraSupplies().getValue() == 2)
-            return this;
-        //if soldiers are not on enemy lines(val== 3)
-        if(getGame().getStatus().getTunnel() != 3)
-            return this;
-        
-        int diceRoll = getGame().getRoll() + getGame().getDRM().get(DRM.RAID);
-        
-        if(diceRoll == 6){//6 = 2 extra
-            getGame().getStatus().getExtraSupplies().setValueUp();
-            getGame().getStatus().getExtraSupplies().setValueUp();
-        }
-        
-        if(diceRoll < 6 && diceRoll > 2){//3,4,5 = 1 extra
-            getGame().getStatus().getExtraSupplies().setValueUp();
-        }
-        
-        if(diceRoll == 1){getGame().capture();}//1 = captured
-        
-        
-        return this;
-    }
 
-    @Override
-    public Estado sabotage(){
-        //check enemy lines
-        if(getGame().getStatus().getTunnel() != 3)
+        if (getGame().getStatus().getSupplies() == 2)
             return this;
-        
-        int diceRoll = getGame().getRoll() + getGame().getDRM().get(DRM.SABOTAGE);
-        
-        if(diceRoll == 1)//captured
+
+        if (getGame().getStatus().getTunnel() != 3)
+            return this;
+
+        int roll = getGame().getRoll() + getGame().getDRM().get(DRM.RAID);
+
+        if (roll == 6) {
+            getGame().getStatus().increaseSupplies();
+            getGame().getStatus().increaseSupplies();
+
+        } else if (2 < roll && roll < 6) {
+            getGame().getStatus().increaseSupplies();
+
+        } else if (roll == 1) {
             getGame().capture();
-        
-        if(diceRoll > 4)//sabotage successful
-            getGame().getEnemy().removeTrebuchet();
-        
-        
-        return this;
+        }
+
+
+            return this;
     }
 
     @Override
-    public Estado rallyTroops(boolean supplies){
-        int diceRoll = 0;
-        
-        if(supplies){//if the user spends supplies to get drm
-            getGame().getStatus().decreaseSupplies();
-            diceRoll = getGame().getDRM().get(DRM.MORALE);            
+    public Estado sabotage(int DRMval){
+
+        if (getGame().getStatus().getTunnel() != 3)
+            return this;
+
+        int roll = getGame().getRoll() + getGame().getDRM().get(DRM.SABOTAGE);
+
+        if (roll == 1)
+            getGame().capture();
+
+        else if (roll > 4)
+            getGame().getEnemy().decreaseTrebuchet();
+
+            return this;
+    }
+
+    @Override
+    public Estado rallyTroops(boolean appDRM){
+        int roll = 0;
+
+        if (appDRM) {
+            getGame().getStatus().getSupplies();
+            roll = getGame().getDRM().get(DRM.MORALE);
         }
-        
-        diceRoll += getGame().getRoll();
-    
-        if (diceRoll > 4)
+
+        roll += getGame().getRoll();
+
+        if (roll > 4)
             getGame().getStatus().increaseMorale();
-        
-        return this;
+
+            return this;
     }
 
     @Override
     public Estado closeCombat(){
-        
-        if(getGame().getEnemy().getLadders() == 0){
-            int diceRoll = getGame().getRoll() + getGame().getDRM().get(DRM.CQB);
-            
-            if(diceRoll == 1)
+        ArrayList<row> rows = new ArrayList<>();
+
+        if (getGame().getEnemy().getLadders() == 0)
+            rows.add(getGame().getEnemy().getRow(0));
+
+        if (getGame().getEnemy().getRams() == 0)
+            rows.add(getGame().getEnemy().getRow(1));
+
+        if (getGame().getEnemy().getTower() == 0)
+            rows.add(getGame().getEnemy().getRow(2));
+
+
+
+        for (row ROW: rows) {
+            int roll = getGame().getRoll();
+
+            if (roll == 1)
                 getGame().getStatus().decreaseMorale();
-            
-            getGame().addInfo("Roll: " + diceRoll);
-            if (diceRoll > getGame().getEnemy().getLadderStrength())
-                getGame().getEnemy().getRow(1).setValueUp();
-        
+
+            roll += getGame().getDRM().get(DRM.CQB);
+
+            getGame().addInfo("Roll: " + roll);
+            if (roll > ROW.getStrength())
+                ROW.setValueDown();
         }
-        
-        if(getGame().getEnemy().getRams() == 0){
-            int diceRoll = getGame().getRoll() + getGame().getDRM().get(DRM.CQB);
-        
-            if(diceRoll == 1)
-                getGame().getStatus().decreaseMorale();
-            
-            getGame().addInfo("Roll: " + diceRoll);
-            if (diceRoll > getGame().getEnemy().getRamStrength())
-                getGame().getEnemy().getRow(2).setValueUp();
+            return this;
+    }
+
+    @Override
+    public Estado endOfTurn() {
+
+        if (getGame().getGameResult()) {
+            return new GameOver(getGame());
         }
-        
-        if(getGame().getEnemy().getTower() == 0){
-            int diceRoll = getGame().getRoll() + getGame().getDRM().get(DRM.CQB);
-        
-            if(diceRoll == 1)
-                getGame().getStatus().decreaseMorale();
-            
-            getGame().addInfo("Roll: " + diceRoll);
-            if (diceRoll > getGame().getEnemy().getTowerStrength())
-                getGame().getEnemy().getRow(3).setValueUp();
-        }
-        
-        
-        return this;
+
+        if (getGame().DeckEmpty())
+            getGame().endOfDay();
+
+        if (getGame().getDay() == 3)
+            return new GameOver(getGame());
+
+        getGame().newTurn();
+        return new AwaitTopCard(getGame());
+    }
+
+    @Override
+    public Estado tunnelMovement() {
+        return new AwaitTunnelChoice(getGame());
     }
 }

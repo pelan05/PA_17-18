@@ -39,8 +39,7 @@ public class StatusCard extends Card {
         return extraSupplies;
     }
 
-    public void increaseWall() {
-        wall.setValueUp();
+    public void increaseWall() { wall.setValueUp();
     }
 
     public void increaseMorale() {
@@ -57,7 +56,6 @@ public class StatusCard extends Card {
     public void decreaseMorale() {
         morale.setValueDown();
     }
-    
     public void decreaseSupplies() {
         supplies.setValueDown();
     }
@@ -83,13 +81,13 @@ public class StatusCard extends Card {
     public String toString(){
         StringBuilder sb = new StringBuilder();
 
-        sb.append("--> Status Card <--");
-        sb.append(morale.toString()).append('\n');
-        sb.append(wall.toString()).append('\n');
-        sb.append(supplies.toString()).append('\n');
-        sb.append(tunnel.toString()).append('\n');
-        sb.append(extraSupplies.toString()).append('\n');
-        sb.append("--> Status Card <--");
+        sb.append("\n--> Status Card <--\n");
+        sb.append("Moral: ").append(morale.toString()).append('\n');
+        sb.append("Muralha: ").append(wall.toString()).append('\n');
+        sb.append("Mantimentos: ").append(supplies.toString()).append('\n');
+        sb.append("Tunel: ").append(tunnel.toString()).append('\n');
+        sb.append("Mantimentos Extra: ").append(extraSupplies.toString()).append('\n');
+        sb.append("--> Status Card <--\n");
 
         return sb.toString();
     }

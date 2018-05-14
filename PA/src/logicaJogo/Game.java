@@ -36,8 +36,9 @@ public class Game {
         this.enemy = new EnemyCard();
 
         day = 1;
-        iteration = actionPoints = iteration = 0;
-        over = defaultTunnelMovement = raidSabotageOnly = false;
+        actionPoints = iteration = 0;
+        over = defaultTunnelMovement = false;
+
 
         drms = new HashMap();
         drms.put(DRM.SABOTAGE, 0);
@@ -52,7 +53,6 @@ public class Game {
 
         deck = new ArrayList<>();
         info = new ArrayList<>();
-        
     }
 
 
@@ -68,6 +68,8 @@ public class Game {
         deck.add(new EventCard(6, new CoverofDarkness(), new EnemyFatigue(), new Rally()));
         deck.add(new EventCard(7, new DeterminedEnemy(), new IronShields(), new Faith()));
     }
+
+    public boolean DeckEmpty(){return deck.isEmpty();}
 
     public void ShuffleDeck() {
         Collections.shuffle(deck);
@@ -86,8 +88,7 @@ public class Game {
     }
 
     public boolean getGameResult() {
-        return over;
-    }
+        return enemy.checkCCA() == 2 || status.getWallStrength() == 0 || status.getMorale() == 0 || status.getSupplies() == 0; }
 
     public void setActionPoints(int ap) {
         this.actionPoints = ap;
@@ -100,6 +101,14 @@ public class Game {
     public int getActionPoints() {
         return this.actionPoints;
     }
+
+    public void addActionPoints() {
+        actionPoints++;
+    }
+
+    public void addActionPoints(int nPoints) {
+        actionPoints = nPoints;
+    }
     
     public boolean useActionPoints() {
         if(getActionPoints() > 0){
@@ -107,15 +116,12 @@ public class Game {
             return true;
         }
         else
+
             return false;
     }
 
     public int getDay() {
         return this.day;
-    }
-
-    public int getIteration() {
-        return this.iteration;
     }
 
     public StatusCard getStatus() {
@@ -151,6 +157,9 @@ public class Game {
         clearDRM();
         actionPoints = 0;
 
+        if(defaultTunnelMovement)
+            normalTunnel();
+
         if (status.getTunnel() == 3)
             if (dice.getRoll() == 1)
                 capture();
@@ -174,6 +183,26 @@ public class Game {
         raidSabotageOnly = true;
     }
 
+    public void enterTunnel(){
+        if(useActionPoints() &&
+                getStatus().getTunnel() == 0)
+            getStatus().increaseTunnel();
+    }
+
+    public void exitTunnel(){
+        if(getStatus().getTunnel() != 0)
+            getStatus().setTunnel(0);
+    }
+
+    public void paidTunnel(){
+        if(useActionPoints())
+            getStatus().setTunnel(3);
+    }
+
+    public void normalTunnel(){
+        if(getStatus().getTunnel() > 0 && getStatus().getTunnel() < 3)
+            getStatus().increaseTunnel();
+    }
 
     @Override
     public String toString() {
@@ -187,24 +216,15 @@ public class Game {
         return sb.toString();
     }
 
-    //tunnel methods
-    
-    public void enterTunnel(){
-        if(useActionPoints() && 
-                getStatus().getTunnel() == 0)
-            getStatus().increaseTunnel();
-    }
-    public void exitTunnel(){
-        if(getStatus().getTunnel() != 0)
-            getStatus().setTunnel(0);
-    }
-    public void paidTunnel(){
-        if(useActionPoints())
-            getStatus().setTunnel(3);
-    }
-    public void normalTunnel(){
-        if(getStatus().getTunnel() > 0 && getStatus().getTunnel() < 3)
-            getStatus().increaseTunnel();
+    public void endOfDay(){
+        CreateDeck();
+        ShuffleDeck();
+
+        status.decreaseSupplies();
+
+        normalTunnel();
+
+        addDay();
     }
     
     

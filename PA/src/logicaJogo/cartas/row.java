@@ -50,9 +50,8 @@ public class row {
         if (strength > 0)
             sb.append("Força: ").append(strength).append("\n");
 
-        sb.append(": ");
-
-            sb.append("[").append( (0 == value)? "X": 0 ).append("] ");
+            sb.append(": ");
+            sb.append("Valor: ").append(value).append("\n");
 
         return sb.toString();
     }

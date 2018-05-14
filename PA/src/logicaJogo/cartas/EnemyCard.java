@@ -16,20 +16,6 @@ public class EnemyCard extends Card{
         this.trebuchet = new row(3, 3);
     }
 
-    
-    public int getLadderStrength(){
-        return ladders.getStrength();
-    }
-    
-    public int getRamStrength(){
-        return rams.getStrength();
-    }
-    
-    public int getTowerStrength(){
-        return tower.getStrength();
-    }
-    
-    
     public int getLadders() {
         return ladders.getValue();
     }
@@ -57,15 +43,6 @@ public class EnemyCard extends Card{
     public int getTrebuchets() {
         return trebuchet.getValue();
     }
-    
-    public void removeTrebuchet(){
-        trebuchet.setValueDown();
-    }
-    
-    public void addTrebuchet(){
-        trebuchet.setValueUp();
-    }
-    
 
     public int checkCCA() {
         int enemiesInCCA = 0;
@@ -75,6 +52,10 @@ public class EnemyCard extends Card{
 
         return enemiesInCCA;
     }
+
+    public void increaseTrebuchet(){trebuchet.setValueUp();}
+
+    public void decreaseTrebuchet(){trebuchet.setValueDown();}
 
     public void removeTower(){
         tower = null;
@@ -98,12 +79,12 @@ public class EnemyCard extends Card{
     public String toString(){
         StringBuilder sb = new StringBuilder();
 
-        sb.append("\n------Enemy Card-------\n");
+        sb.append("\n--> Enemy Card <--\n");
         sb.append("Ladders: ").append(ladders.toString()).append('\n');
         sb.append("Rams: ").append(rams.toString()).append('\n');
         sb.append("Tower: ").append(tower.toString()).append('\n');
         sb.append("Trebuchet: ").append(trebuchet.toString()).append('\n');
-        sb.append("------Enemy Card------\n");
+        sb.append("--> Enemy Card <--\n");
 
         return sb.toString();
     }

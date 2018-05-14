@@ -62,8 +62,8 @@ public class ObservableGame {
         setState(getState().coupure());
     }
 
-    public void rallyTroops(Boolean applyDRM) {
-        setState(getState().rallyTroops());
+    public void rallyTroops(boolean supplies) {
+        setState(getState().rallyTroops(supplies));
     }
 
     public void supplyRaid() {
@@ -71,7 +71,7 @@ public class ObservableGame {
     }
 
     public void sabotage() {
-        setState(getState().sabotage(0));
+        setState(getState().sabotage());
     }
 
     public void endTurn() {

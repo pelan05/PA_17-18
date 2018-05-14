@@ -46,7 +46,7 @@ public class StatusCard extends Card {
     public void increaseMorale() {
         morale.setValueUp();
     }
-    public void increaseFortressSupplies() {
+    public void increaseSupplies() {
         supplies.setValueUp();
     }
 
@@ -57,7 +57,8 @@ public class StatusCard extends Card {
     public void decreaseMorale() {
         morale.setValueDown();
     }
-    public void decreaseFortressSupplies() {
+    
+    public void decreaseSupplies() {
         supplies.setValueDown();
     }
 

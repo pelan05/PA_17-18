@@ -13,6 +13,7 @@ public class Game {
 
     private boolean over;
     private boolean defaultTunnelMovement;
+    private boolean raidSabotageOnly;
     private int rowChoice;
 
     private int actionPoints;
@@ -36,7 +37,7 @@ public class Game {
 
         day = 1;
         iteration = actionPoints = iteration = 0;
-        over = defaultTunnelMovement = false;
+        over = defaultTunnelMovement = raidSabotageOnly = false;
 
         drms = new HashMap();
         drms.put(DRM.SABOTAGE, 0);
@@ -51,7 +52,7 @@ public class Game {
 
         deck = new ArrayList<>();
         info = new ArrayList<>();
-        System.out.println("estou aqui!");
+        
     }
 
 
@@ -72,19 +73,9 @@ public class Game {
         Collections.shuffle(deck);
     }
 
-    public Boolean DeckEmpty() {
-        return deck.isEmpty();
-    }
-
-    //----------------------------------------------
-
     public EventCard drawCard() {
         return deck.remove(0);
     }
-
-    /*public Boolean getFreeMov() {
-        return freeTunnelMov;
-    }*/
 
     public void setRowChoice(int row) {
         rowChoice = row;
@@ -179,6 +170,9 @@ public class Game {
         return drms;
     }
 
+    public void setRaidSabotageOnly(){
+        raidSabotageOnly = true;
+    }
 
 
     @Override

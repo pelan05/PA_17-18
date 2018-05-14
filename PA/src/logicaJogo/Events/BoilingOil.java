@@ -1,5 +1,6 @@
 package logicaJogo.events;
 
+import logicaJogo.DRM;
 import logicaJogo.Game;
 import logicaJogo.events.RegularMove;
 
@@ -9,9 +10,7 @@ public class BoilingOil extends RegularMove {
     }
 
     @Override
-    public void action(Game g){
-
+    public void action(Game game){
+        game.getDRM().put(DRM.CIRCLE, 2);
     }
-    
-    
 }

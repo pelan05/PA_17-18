@@ -14,8 +14,8 @@ public interface Estado {
     Estado boilingWater();
     Estado coupure();
     Estado supplyRaid();
-    Estado sabotage(int DRM);
-    Estado rallyTroops();
+    Estado sabotage();
+    Estado rallyTroops(boolean supplies);
     Estado closeCombat();
 
     Estado enterTunnel();

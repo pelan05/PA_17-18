@@ -10,8 +10,8 @@ public class Collapsed extends RegularMove {
     }
 
     @Override
-    public void action(Game g){
-
+    public void action(Game game){
+        game.getEnemy().removeTower();
     }
     
 }

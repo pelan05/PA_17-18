@@ -1,5 +1,6 @@
 package logicaJogo.events;
 
+import logicaJogo.DRM;
 import logicaJogo.Game;
 import logicaJogo.events.RegularMove;
 
@@ -11,8 +12,10 @@ public class EnemyFatigue extends RegularMove {
     }
 
     @Override
-    public void action(Game g){
-
+    public void action(Game game){
+        game.getDRM().put(DRM.COUPURE, 1);
+        game.getDRM().put(DRM.RAID, 1);
+        game.getDRM().put(DRM.SABOTAGE, 1);
     }
 
 

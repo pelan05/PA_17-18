@@ -1,5 +1,6 @@
 package logicaJogo.events;
 
+import logicaJogo.DRM;
 import logicaJogo.Game;
 import logicaJogo.events.RegularMove;
 
@@ -9,7 +10,8 @@ public class Rally extends RegularMove {
     }
 
     @Override
-    public void action(Game g){
-
+    public void action(Game game){
+        game.getDRM().put(DRM.CQB, 1);
+        game.getDRM().put(DRM.CIRCLE, 1);
     }
 }

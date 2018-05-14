@@ -39,7 +39,7 @@ public class StateAdapter implements Estado {
     public Estado boilingWater() {return this;}
 
     @Override
-    public Estado rallyTroops() {return this;}
+    public Estado rallyTroops(boolean supplies) {return this;}
 
     @Override
     public Estado closeCombat() {return this;}
@@ -51,7 +51,7 @@ public class StateAdapter implements Estado {
     public Estado supplyRaid() {return this;}
 
     @Override
-    public Estado sabotage(int DRM) {return this;}
+    public Estado sabotage() {return this;}
     
     @Override
     public Estado tunnelMovement() {return this;}

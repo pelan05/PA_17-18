@@ -17,9 +17,7 @@ public class TrebuchetEvent extends RegularMove {
 
     @Override
     public void action(Game g){
-        
-        
-        
+
     StatusCard card = g.getStatus();
     int trebuchets = g.getEnemy().getTrebuchets();
         

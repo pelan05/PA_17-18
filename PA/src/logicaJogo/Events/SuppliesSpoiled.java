@@ -10,8 +10,8 @@ public class SuppliesSpoiled extends RegularMove {
     }
 
     @Override
-    public void action(Game g){
-
+    public void action(Game game){
+        game.getStatus().decreaseSupplies();
     }
     
 }

@@ -18,7 +18,6 @@ public interface Estado {
     Estado rallyTroops();
     Estado closeCombat();
 
-    Estado freeTunnelMovement();
     Estado enterTunnel();
     Estado exitTunnel();
     Estado paidTunnelMovement();

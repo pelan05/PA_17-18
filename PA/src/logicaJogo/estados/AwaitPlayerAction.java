@@ -33,13 +33,47 @@ public class AwaitPlayerAction extends StateAdapter {
         getGame().addInfo("Dice Roll: " + diceRoll);
 
         if(diceRoll > ROW.getStrength())
-            ROW.setValueDown();
+            ROW.setValueUp();
 
         return this;
     }
 
     @Override
     public Estado boilingWater(){
+        row ROW = getGame().getEnemy().getRow(getGame().getRowChoice());
+
+        int diceRoll = getGame().getRoll();
+        
+        if (getGame().getEnemy().inCircleSpace(ROW) != 1)
+            return this;
+
+        switch(getGame().getRowChoice()){
+            case 0:
+                diceRoll += getGame().getDRM().get(DRM.LADDERS);
+                break;
+            case 1:
+                diceRoll += getGame().getDRM().get(DRM.RAM);
+                break;
+            case 2:
+                diceRoll += getGame().getDRM().get(DRM.TOWER);
+                break;
+        }
+
+        if(getGame().getEnemy().inCircleSpace(ROW) == 1)
+            diceRoll +=  getGame().getDRM().get(DRM.CIRCLE);
+
+        getGame().addInfo("Dice Roll: " + diceRoll);
+
+        
+        if(diceRoll == 1)
+            return this;
+
+        getGame().addInfo("Roll: " + (diceRoll+1));
+        if ((diceRoll + 1) > ROW.getStrength())
+            ROW.setValueUp();
+        
+        
+        
         return this;
     }
 

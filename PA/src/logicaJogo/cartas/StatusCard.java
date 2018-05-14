@@ -65,6 +65,10 @@ public class StatusCard extends Card {
         if(tunnel.getValue() < tunnel.getSize())
             tunnel.setValueUp();
     }
+    
+    public void setTunnel(int val){
+        this.tunnel.setValue(val);
+    }
 
     public void resetTunnel(){
         tunnel.setValue(0);

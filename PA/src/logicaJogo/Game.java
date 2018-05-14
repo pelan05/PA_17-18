@@ -101,9 +101,22 @@ public class Game {
     public void setActionPoints(int ap) {
         this.actionPoints = ap;
     }
+    
+    public void reduceActionPoints(){
+        this.actionPoints --;
+    }
 
     public int getActionPoints() {
         return this.actionPoints;
+    }
+    
+    public boolean useActionPoints() {
+        if(getActionPoints() > 0){
+            reduceActionPoints();
+            return true;
+        }
+        else
+            return false;
     }
 
     public int getDay() {
@@ -180,5 +193,25 @@ public class Game {
         return sb.toString();
     }
 
-
+    //tunnel methods
+    
+    public void enterTunnel(){
+        if(useActionPoints() && 
+                getStatus().getTunnel() == 0)
+            getStatus().increaseTunnel();
+    }
+    public void exitTunnel(){
+        if(getStatus().getTunnel() != 0)
+            getStatus().setTunnel(0);
+    }
+    public void paidTunnel(){
+        if(useActionPoints())
+            getStatus().setTunnel(3);
+    }
+    public void normalTunnel(){
+        if(getStatus().getTunnel() > 0 && getStatus().getTunnel() < 3)
+            getStatus().increaseTunnel();
+    }
+    
+    
 }

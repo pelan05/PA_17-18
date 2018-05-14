@@ -31,15 +31,12 @@ public class StateAdapter implements Estado {
 
     @Override
     public Estado selectRow(int row){return this;}
-
-    //-------------------------------------------------
-
+    
     @Override
     public Estado archersAttack() {return this;}
 
     @Override
     public Estado boilingWater() {return this;}
-
 
     @Override
     public Estado rallyTroops() {return this;}
@@ -55,14 +52,9 @@ public class StateAdapter implements Estado {
 
     @Override
     public Estado sabotage(int DRM) {return this;}
-
-    //-----------------------------------------------
-
+    
     @Override
     public Estado tunnelMovement() {return this;}
-
-    @Override
-    public Estado freeTunnelMovement() {return this;}
 
     @Override
     public Estado paidTunnelMovement() {return this;}
@@ -72,8 +64,6 @@ public class StateAdapter implements Estado {
 
     @Override
     public Estado enterTunnel(){return this;}
-
-    //--------------------------------------------------
 
     @Override
     public Estado GameResult(){return this;}

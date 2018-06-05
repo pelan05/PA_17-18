@@ -86,6 +86,8 @@ public class Game {
     public int getRowChoice() {
         return rowChoice;
     }
+    
+    
 
     public boolean getGameResult() {
         return enemy.checkCCA() == 2 || status.getWallStrength() == 0 || status.getMorale() == 0 || status.getSupplies() == 0; }
@@ -95,7 +97,7 @@ public class Game {
     }
     
     public void reduceActionPoints(){
-        this.actionPoints --;
+        this.actionPoints--;
     }
 
     public int getActionPoints() {

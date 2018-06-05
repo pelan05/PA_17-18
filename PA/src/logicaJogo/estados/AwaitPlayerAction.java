@@ -37,7 +37,10 @@ public class AwaitPlayerAction extends StateAdapter {
         if(diceRoll > ROW.getStrength())
             ROW.setValueUp();
 
-            return this;
+        game.reduceActionPoints();/////////
+        
+        
+        return this;
     }
 
     @Override
@@ -74,7 +77,9 @@ public class AwaitPlayerAction extends StateAdapter {
         if ((diceRoll + 1) > ROW.getStrength())
             ROW.setValueUp();
 
-            return this;
+        game.reduceActionPoints();
+        
+        return this;
     }
 
     @Override
@@ -84,7 +89,9 @@ public class AwaitPlayerAction extends StateAdapter {
         if (roll > 4)
             getGame().getStatus().increaseWall();
 
-            return this;
+        game.reduceActionPoints();
+        
+        return this;
     }
 
     @Override
@@ -110,7 +117,9 @@ public class AwaitPlayerAction extends StateAdapter {
         }
 
 
-            return this;
+        game.reduceActionPoints();
+        
+        return this;
     }
 
     @Override
@@ -127,7 +136,9 @@ public class AwaitPlayerAction extends StateAdapter {
         else if (roll > 4)
             getGame().getEnemy().decreaseTrebuchet();
 
-            return this;
+        game.reduceActionPoints();
+        
+        return this;
     }
 
     @Override
@@ -144,7 +155,9 @@ public class AwaitPlayerAction extends StateAdapter {
         if (roll > 4)
             getGame().getStatus().increaseMorale();
 
-            return this;
+        game.reduceActionPoints();
+        
+        return this;
     }
 
     @Override
@@ -174,7 +187,10 @@ public class AwaitPlayerAction extends StateAdapter {
             if (roll > ROW.getStrength())
                 ROW.setValueDown();
         }
-            return this;
+    
+        
+        game.reduceActionPoints();
+        return this;
     }
 
     @Override
@@ -184,8 +200,12 @@ public class AwaitPlayerAction extends StateAdapter {
             return new GameOver(getGame());
         }
 
-        if (getGame().DeckEmpty())
+        if (getGame().DeckEmpty()){
             getGame().endOfDay();
+            return new AwaitTopCard(getGame());
+        }
+            
+            
 
         if (getGame().getDay() == 3)
             return new GameOver(getGame());

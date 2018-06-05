@@ -1,8 +1,9 @@
 package logicaJogo.estados;
 
+import java.io.Serializable;
 import logicaJogo.cartas.row;
 
-public interface Estado {
+public interface Estado extends Serializable {
     Estado drawsTopCard();
     Estado Beggining();
     Estado endOfTurn();

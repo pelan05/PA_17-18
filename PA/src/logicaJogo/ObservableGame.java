@@ -4,8 +4,9 @@ import logicaJogo.estados.AwaitBeggining;
 import logicaJogo.estados.Estado;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class ObservableGame {
+public class ObservableGame extends Observable {
     private Game game;
     private Estado state;
 
@@ -95,6 +96,7 @@ public class ObservableGame {
     }
 
     public void selectRowChoice(int row) {
+        
         setState(getState().selectRow(row));
     }
 

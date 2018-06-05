@@ -12,6 +12,7 @@ public class AwaitTunnelChoice extends StateAdapter {
     public Estado enterTunnel() {
         getGame().enterTunnel();
         
+        
         return new AwaitPlayerAction(getGame());
     }
     

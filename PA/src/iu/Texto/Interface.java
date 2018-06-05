@@ -105,7 +105,8 @@ public class Interface {
        if (value == 1 || value == 2)
             if (!trackdirection) {
                 Obgame.setState(new AwaitRowDirection(Obgame.getGame()));
-                return;
+                
+                
             }
 
         switch (value) {
@@ -155,9 +156,9 @@ public class Interface {
     private void getUserInputAwaitngRowDirection() {
         int value;
 
-        System.out.println("1 - Wall");
-        System.out.println("2 - Gates");
-        System.out.println("3 - Trebuchets");
+        System.out.println("1 - Ladder");
+        System.out.println("2 - Ram");
+        System.out.println("3 - Tower");
         System.out.println("--> ");
 
         while (!scanner.hasNextInt())
@@ -176,7 +177,7 @@ public class Interface {
         System.out.println("3 - Advance ");
         System.out.println("4 - Exit ");
         System.out.println("5 - FastMovement ");
-        System.out.println(">> ");
+        System.out.println("--> ");
 
         while (!scanner.hasNextInt())
             scanner.next();

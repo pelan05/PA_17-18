@@ -13,20 +13,20 @@ public class AwaitTopCard extends StateAdapter {
     public Estado drawsTopCard(){
         EventCard card = game.drawCard();
         game.addInfo("Drawn Card: " + card.toString() + "\n");
-
+        
         Event currentEvent = card.getEvent(game.getDay());
         game.addInfo("Applied Event: " + currentEvent.toString() + "\n");
-
+        
         game.addActionPoints(currentEvent.getActionPointAvaible());
-
+        
         currentEvent.action(game);
-
+        
         currentEvent.ApplyEnemyAdvancementOrder(game);
-
+        
         if (game.getEnemy().checkCCA() == 3) {
             return new GameOver(game);
         }
-
+        
         return new AwaitPlayerAction(getGame());
     }
 }

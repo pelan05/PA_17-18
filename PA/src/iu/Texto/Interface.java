@@ -59,7 +59,7 @@ public class Interface {
         System.out.println("Press any key to draw card!");
         System.out.println(">> ");
 
-        scanner.nextLine();
+        scanner.nextInt();
 
         Obgame.draw();
     }
@@ -86,6 +86,9 @@ public class Interface {
     private void getUserInputAwaitingActionChoice() {
         int value;
 
+        
+                
+        
         System.out.println("1 - Archers Attack");
         System.out.println("2 - Boiling Water Attack");
         System.out.println("3 - Close Combat Attack");
@@ -94,7 +97,7 @@ public class Interface {
         System.out.println("6 - Tunnel Movement");
         System.out.println("7 - Supply Raid");
         System.out.println("8 - Sabotage");
-        System.out.println("10 - End Turn");
+        System.out.println("9 - End Turn");
         System.out.println(">> ");
 
         while (!scanner.hasNextInt())
@@ -136,6 +139,9 @@ public class Interface {
                 break;
             case 9:
                 Obgame.endOfTurn();
+                break;
+            default:
+                System.out.println("Escolha uma opção válida!");
                 break;
         }
 

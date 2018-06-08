@@ -96,29 +96,22 @@ public class Game {
         this.actionPoints = ap;
     }
     
-    public void reduceActionPoints(){
-        this.actionPoints--;
-    }
-
     public int getActionPoints() {
         return this.actionPoints;
     }
 
-    public void addActionPoints() {
-        actionPoints++;
-    }
 
     public void addActionPoints(int nPoints) {
-        actionPoints = nPoints;
+        this.actionPoints += nPoints;
     }
     
     public boolean useActionPoints() {
-        if(getActionPoints() > 0){
-            reduceActionPoints();
+        if( this.actionPoints > 0){
+            this.actionPoints = this.actionPoints - 1;
             return true;
         }
         else
-
+            
             return false;
     }
 
@@ -213,7 +206,7 @@ public class Game {
         sb.append(status.toString());
         sb.append(enemy.toString());
 
-        sb.append("Action Points: ").append(actionPoints).append("\n");
+        sb.append("Action Points: ").append(this.actionPoints).append("\n");
 
         return sb.toString();
     }

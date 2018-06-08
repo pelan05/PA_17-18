@@ -37,7 +37,8 @@ public class AwaitPlayerAction extends StateAdapter {
         if(diceRoll > ROW.getStrength())
             ROW.setValueUp();
 
-        game.reduceActionPoints();/////////
+        if(!game.useActionPoints())
+            endOfTurn();
         
         
         return this;
@@ -77,7 +78,8 @@ public class AwaitPlayerAction extends StateAdapter {
         if ((diceRoll + 1) > ROW.getStrength())
             ROW.setValueUp();
 
-        game.reduceActionPoints();
+        if(!game.useActionPoints())
+            endOfTurn();
         
         return this;
     }
@@ -89,7 +91,8 @@ public class AwaitPlayerAction extends StateAdapter {
         if (roll > 4)
             getGame().getStatus().increaseWall();
 
-        game.reduceActionPoints();
+        if(!game.useActionPoints())
+            endOfTurn();
         
         return this;
     }
@@ -117,7 +120,8 @@ public class AwaitPlayerAction extends StateAdapter {
         }
 
 
-        game.reduceActionPoints();
+        if(!game.useActionPoints())
+            endOfTurn();
         
         return this;
     }
@@ -136,7 +140,8 @@ public class AwaitPlayerAction extends StateAdapter {
         else if (roll > 4)
             getGame().getEnemy().decreaseTrebuchet();
 
-        game.reduceActionPoints();
+        if(!game.useActionPoints())
+            endOfTurn();
         
         return this;
     }
@@ -155,7 +160,8 @@ public class AwaitPlayerAction extends StateAdapter {
         if (roll > 4)
             getGame().getStatus().increaseMorale();
 
-        game.reduceActionPoints();
+        if(!game.useActionPoints())
+            endOfTurn();
         
         return this;
     }
@@ -189,7 +195,9 @@ public class AwaitPlayerAction extends StateAdapter {
         }
     
         
-        game.reduceActionPoints();
+        if(!game.useActionPoints())
+            endOfTurn();
+        
         return this;
     }
 

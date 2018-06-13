@@ -16,8 +16,8 @@ public class AwaitTopCard extends StateAdapter {
         
         Event currentEvent = card.getEvent(game.getDay());
         game.addInfo("Applied Event: " + currentEvent.toString() + "\n");
-        
-        game.addActionPoints(currentEvent.getActionPointAvaible());
+
+        game.getActionPoints();
         
         currentEvent.action(game);
         

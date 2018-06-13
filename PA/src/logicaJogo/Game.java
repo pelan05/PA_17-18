@@ -18,7 +18,6 @@ public class Game {
 
     private int actionPoints;
     private int day;
-    private int iteration; //1-7
 
     private DiceRoll dice;
 
@@ -36,20 +35,10 @@ public class Game {
         this.enemy = new EnemyCard();
 
         day = 1;
-        actionPoints = iteration = 0;
         over = defaultTunnelMovement = false;
 
-
         drms = new HashMap();
-        drms.put(DRM.SABOTAGE, 0);
-        drms.put(DRM.MORALE, 0);
-        drms.put(DRM.COUPURE, 0);
-        drms.put(DRM.RAID, 0);
-        drms.put(DRM.RAM, 0);
-        drms.put(DRM.TOWER, 0);
-        drms.put(DRM.TREBUCHET, 0);
-        drms.put(DRM.CQB, 0);
-        drms.put(DRM.CIRCLE, 0);
+        createDRMS(drms);
 
         deck = new ArrayList<>();
         info = new ArrayList<>();
@@ -76,6 +65,7 @@ public class Game {
     }
 
     public EventCard drawCard() {
+        actionPoints = deck.get(0).getAP(day);
         return deck.remove(0);
     }
 
@@ -86,23 +76,12 @@ public class Game {
     public int getRowChoice() {
         return rowChoice;
     }
-    
-    
 
     public boolean getGameResult() {
         return enemy.checkCCA() == 2 || status.getWallStrength() == 0 || status.getMorale() == 0 || status.getSupplies() == 0; }
-
-    public void setActionPoints(int ap) {
-        this.actionPoints = ap;
-    }
     
     public int getActionPoints() {
         return this.actionPoints;
-    }
-
-
-    public void addActionPoints(int nPoints) {
-        this.actionPoints += nPoints;
     }
     
     public boolean useActionPoints() {
@@ -110,9 +89,9 @@ public class Game {
             this.actionPoints = this.actionPoints - 1;
             return true;
         }
-        else
-            
+        else {
             return false;
+        }
     }
 
     public int getDay() {
@@ -150,6 +129,7 @@ public class Game {
     public void newTurn() {
         defaultTunnelMovement = true;
         clearDRM();
+        createDRMS(drms);
         actionPoints = 0;
 
         if(defaultTunnelMovement)
@@ -171,7 +151,23 @@ public class Game {
     }
 
     public HashMap<DRM, Integer> getDRM(){
-        return drms;
+
+        return this.drms;
+    }
+
+    public void createDRMS(HashMap<DRM, Integer> drms){
+
+
+        drms.put(DRM.SABOTAGE, 0);
+        drms.put(DRM.MORALE, 0);
+        drms.put(DRM.COUPURE, 0);
+        drms.put(DRM.RAID, 0);
+        drms.put(DRM.LADDERS, 0);
+        drms.put(DRM.RAM, 0);
+        drms.put(DRM.TOWER, 0);
+        drms.put(DRM.TREBUCHET, 0);
+        drms.put(DRM.CQB, 0);
+        drms.put(DRM.CIRCLE, 0);
     }
 
     public void setRaidSabotageOnly(){
@@ -179,8 +175,7 @@ public class Game {
     }
 
     public void enterTunnel(){
-        if(useActionPoints() &&
-                getStatus().getTunnel() == 0)
+        if(useActionPoints() && getStatus().getTunnel() == 0)
             getStatus().increaseTunnel();
     }
 
@@ -221,6 +216,4 @@ public class Game {
 
         addDay();
     }
-    
-    
 }

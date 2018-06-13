@@ -30,6 +30,17 @@ public class EventCard extends Card {
         return id;
     }
 
+    public int getAP(int day){
+        int AP = 0;
+
+        for(int i = 0; i < 3; i++){
+            if(day - 1 == i)
+            AP = events[i].ActionPointAvaible;
+        }
+
+        return AP;
+    }
+
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();

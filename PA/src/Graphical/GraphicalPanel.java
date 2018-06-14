@@ -47,9 +47,9 @@ public class GraphicalPanel  extends JPanel implements Observer, Constants {
     }
 
     ObservableGame observableGame;
-    StatsPanel statsPanel;
-    EnemyPanel enemyPanel;
-    AwaitBeginningPanel awaitBeginningPanel;
+    StatusCard statsPanel;
+    EnemyCard enemyPanel;
+    AwaitBeginning awaitBeginningPanel;
     AwaitCardSelectionPanel awaitCardSelectionPanel;
     AwaitOptionSelectionPanel awaitOptionSelectionPanel;
     AwaitDiceRerrollPanel awaitDiceRerrollPanel;

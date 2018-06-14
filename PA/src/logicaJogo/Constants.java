@@ -13,6 +13,9 @@ public interface Constants {
     final static String CARD6 = "logicaJogo/Card6";
     final static String CARD7 = "logicaJogo/Card7";
 
+    
+    final static String INTRO_IMAGE = "images/Intro.jpg";    
+    final static String GAME_BACKGROUND = "images/Background.jpg";    
     final static String IMG_BACK = "images/Back.jpg";
     final static String IMG_ENEMY = "images/Enemy.jpg";
     final static String IMG_STATUS = "images/Status.jpg";

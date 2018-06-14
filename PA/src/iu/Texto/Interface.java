@@ -139,6 +139,7 @@ public class Interface {
                 break;
             case 9:
                 Obgame.endOfTurn();
+                Obgame.
                 break;
             default:
                 System.out.println("Escolha uma opção válida!");

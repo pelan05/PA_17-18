@@ -16,7 +16,6 @@ public class Interface {
     public Interface(ObservableGame Obgame) {
         this.Obgame = Obgame;
         scanner = new Scanner(System.in);
-        trackdirection = false;
     }
 
     public void showGame() {
@@ -106,11 +105,11 @@ public class Interface {
         value = scanner.nextInt();
 
        if (value == 1 || value == 2)
-            if (!trackdirection) {
-                Obgame.setState(new AwaitRowDirection(Obgame.getGame()));
+           getUserInputAwaitngRowDirection();
+                //Obgame.setState(new AwaitRowDirection(Obgame.getGame()));
+                //erro
                 
                 
-            }
 
         switch (value) {
             case 1:
@@ -139,14 +138,12 @@ public class Interface {
                 break;
             case 9:
                 Obgame.endOfTurn();
-                
                 break;
             default:
                 System.out.println("Escolha uma opção válida!");
                 break;
         }
 
-       trackdirection = false;
     }
 
     private Boolean applyDRM() {

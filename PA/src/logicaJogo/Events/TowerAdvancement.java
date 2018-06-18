@@ -1,10 +1,11 @@
 package logicaJogo.events;
 
-import java.io.Serializable;
 import logicaJogo.Game;
 import logicaJogo.cartas.EnemyCard;
 
-public class TowerAdvancement extends EnemyAdvancement  implements Serializable{
+import java.io.Serializable;
+
+public class TowerAdvancement extends EnemyAdvancement  {
     
     @Override
     public void action(Game g){

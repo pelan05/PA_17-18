@@ -1,10 +1,9 @@
 package logicaJogo.events;
 
-import java.io.Serializable;
 import logicaJogo.Game;
 import logicaJogo.cartas.EnemyCard;
 
-public class SlowestUnitAdvance extends EnemyAdvancement  implements Serializable{
+public class SlowestUnitAdvance extends EnemyAdvancement {
     
     @Override
     public void action(Game g){

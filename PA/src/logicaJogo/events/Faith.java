@@ -1,10 +1,9 @@
 package logicaJogo.events;
-import java.io.Serializable;
 import logicaJogo.DRM;
 import logicaJogo.events.RegularMove;
 import logicaJogo.Game;
 
-public class Faith extends RegularMove  implements Serializable{
+public class Faith extends RegularMove {
 
     public Faith(){
         super("Faith", "+1 to attacks on the Battering Ram, Ladders and Morale Action", 3, new LadderAdvancement(), new RamAdvancement(), new TowerAdvancement());

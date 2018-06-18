@@ -22,11 +22,8 @@ public class Card extends JPanel implements Observer {
 
     private final int type;
 
-    private boolean front = true; // its false when a event card i face down
+    private boolean front = true;
 
-    private Box cardBox;
-    private JLabel label;
-    private JPanel panel;
 
     private BufferedImage img;
 
@@ -39,16 +36,11 @@ public class Card extends JPanel implements Observer {
 
         setImg();
 
-        Dimension d = new Dimension(
-                Constants.GAP_X_CARD + img.getWidth() + Constants.GAP_X_CARD,
-                Constants.GAP_Y_CARD + img.getHeight()  + Constants.GAP_X_CARD
-        );
+        Dimension d = new Dimension(Constants.GAP_X_CARD + img.getWidth() + Constants.GAP_X_CARD, Constants.GAP_Y_CARD + img.getHeight()  + Constants.GAP_X_CARD);
 
         setPreferredSize(d);
         setMaximumSize(d);
         setMinimumSize(d);
-
-        setBackground(Color.LIGHT_GRAY);
 
         addMouseListener(new EventListener());
     }
@@ -62,10 +54,10 @@ public class Card extends JPanel implements Observer {
             case EVENT_CARD:
                 if (!front) {
                     img = GamePanel.getEventCardBackImg();
-
                 } else {
                     int cardNumber = game.getGame().getCurrentEvent().getID();
                     img = GamePanel.getEventCardFrontImg(cardNumber);
+
                 }   break;
 
             case STATUS_CARD:
@@ -92,8 +84,7 @@ public class Card extends JPanel implements Observer {
         super.paintComponent(g);
 
         if (img != null)
-            g.drawImage(
-                    img, Constants.GAP_X_CARD, Constants.GAP_Y_CARD, null);
+            g.drawImage(img, Constants.GAP_X_CARD, Constants.GAP_Y_CARD, null);
     }
 
     private class EventListener implements MouseListener {
@@ -105,8 +96,6 @@ public class Card extends JPanel implements Observer {
 
                 front = true;
                 setImg();
-
-                //notify();
             }
         }
 

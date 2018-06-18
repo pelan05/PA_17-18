@@ -28,14 +28,6 @@ public class Frame extends JFrame implements Observer {
         );
     }
 
-    public Frame(ObservableGame game, int x, int y) {
-        this(
-                game,
-                x, y,
-                Constants.DIM_X_FRAME, Constants.DIM_Y_FRAME
-        );
-    }
-
     public Frame(ObservableGame game, int x, int y, int width, int height) {
         super("9 Card Siege");
 
@@ -162,7 +154,6 @@ public class Frame extends JFrame implements Observer {
 
         setContentPane(new JLabel(new ImageIcon(GamePanel.getGameBackground().getScaledInstance(screenSize.width, screenSize.height, Image.SCALE_SMOOTH))));
         cp = getContentPane();
-
         cp.setLayout(new FlowLayout());
         setJMenuBar(menuBar);
         cp.add(startPanel);
@@ -170,7 +161,8 @@ public class Frame extends JFrame implements Observer {
 
     @Override
     public void update(Observable t, Object o) {
-        System.out.println("UPDATING. STATE => " + game.getState());
+        System.out.println("Estado => " + game.getState());
+        System.out.println(game.getInfo()+ game.getGame().getEnemy().toString() + game.getGame().getStatus().toString() + "\nAction Points: " + game.getGame().getActionPoints() + "\nDay: " + game.getGame().getDay());
         if (!(game.getState() instanceof AwaitBeggining) ) {
             cp.remove(startPanel);
             cp.add(gamePanel, BorderLayout.CENTER);

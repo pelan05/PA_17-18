@@ -2,7 +2,7 @@ package logicaJogo.cartas;
 
 import java.io.Serializable;
 
-public class row  implements Serializable{
+public class row  implements Serializable {
     private int size;
     private int value;
     private int strength;

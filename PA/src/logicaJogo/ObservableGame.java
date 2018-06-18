@@ -51,8 +51,8 @@ public class ObservableGame extends Observable {
     }
 
     public void loadGame(){
-        
-        
+
+
         setChanged();
         notifyObservers();
         loadGameInstance();

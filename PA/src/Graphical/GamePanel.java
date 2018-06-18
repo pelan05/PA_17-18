@@ -1,10 +1,8 @@
 package Graphical;
 
+import iu.Texto.Interface;
 import logicaJogo.ObservableGame;
-import logicaJogo.estados.AwaitPlayerAction;
-import logicaJogo.estados.AwaitTopCard;
-import logicaJogo.estados.AwaitTrackDirection;
-import logicaJogo.estados.AwaitTunnelChoice;
+import logicaJogo.estados.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -65,10 +63,15 @@ public class GamePanel extends JPanel implements Observer {
     private Card enemiesPanel;
     private Card eventPanel;
     private AwaitPlayerActionPanel awaitPlayerActionPanel;
+    private GameOverPanel gameOverPanel;
     private RowSelectPanel rowSelectPanel;
     private TunnelMovePanel tunnelMovPanel;
     private JPanel choicePanel;
     private JLabel choiceLabel;
+    private JLabel day;
+    private JLabel ap;
+    private JLabel status;
+    private JLabel enemy;
 
 
     public GamePanel(ObservableGame game) {
@@ -80,8 +83,6 @@ public class GamePanel extends JPanel implements Observer {
         update(game, null);
     }
 
-
-
     private void setupComponents() {
         statusPanel = new Card(game, Card.STATUS_CARD);
         enemiesPanel = new Card(game, Card.ENEMIES_CARD);
@@ -90,9 +91,14 @@ public class GamePanel extends JPanel implements Observer {
         awaitPlayerActionPanel = new AwaitPlayerActionPanel(game);
         rowSelectPanel = new RowSelectPanel(game);
         tunnelMovPanel = new TunnelMovePanel(game);
+        gameOverPanel = new GameOverPanel(game);
 
         choicePanel = new JPanel();
         choiceLabel = new JLabel();
+        day = new JLabel("Day: " + game.getGame().getDay());
+        ap = new JLabel("Action Points: " + game.getGame().getActionPoints());
+        status = new JLabel();
+        enemy = new JLabel();
     }
 
     private void setupLayout() {
@@ -145,6 +151,10 @@ public class GamePanel extends JPanel implements Observer {
         center.add(topBox);
         center.add(Box.createVerticalGlue());
         center.add(botBox);
+        center.add(day);
+        center.add(ap);
+        center.add(status);
+        center.add(enemy);
         center.add(Box.createVerticalGlue());
 
         setLayout(new BorderLayout());
@@ -168,6 +178,7 @@ public class GamePanel extends JPanel implements Observer {
             swapChoicePanel(awaitPlayerActionPanel);
             choiceLabel.setText("Select Action");
 
+
         } else if (game.getState() instanceof AwaitTrackDirection) {
             swapChoicePanel(rowSelectPanel);
             choiceLabel.setText("Select Row");
@@ -176,10 +187,17 @@ public class GamePanel extends JPanel implements Observer {
             swapChoicePanel(tunnelMovPanel);
             choiceLabel.setText("Select Tunnel Movement");
 
+        if(game.getState() instanceof GameOver){
+            swapChoicePanel(gameOverPanel);
+        }
         } else {
             choicePanel.setVisible(false);
             choiceLabel.removeAll();
         }
+        day.setText("Day: " + Integer.toString(game.getGame().getDay()));
+        ap.setText("Action Points: " + Integer.toString(game.getGame().getActionPoints()));
+        status.setText(game.getGame().getStatus().toString());
+        enemy.setText(game.getGame().getEnemy().toString());
 
         revalidate();
         repaint();

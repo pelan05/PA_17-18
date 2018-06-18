@@ -23,16 +23,12 @@ public class RowSelectPanel extends JPanel implements Observer {
         this.game = game;
         this.game.addObserver(this);
 
-        Dimension d = new Dimension(
-                Constants.GAP_X_CARD + Constants.DIM_X_CARD + Constants.GAP_X_CARD,
-                Constants.GAP_Y_CARD + Constants.DIM_Y_CARD + Constants.GAP_X_CARD
+        Dimension d = new Dimension(Constants.GAP_X_CARD + Constants.DIM_X_CARD + Constants.GAP_X_CARD, Constants.GAP_Y_CARD + Constants.DIM_Y_CARD + Constants.GAP_X_CARD
         );
 
         setPreferredSize(d);
         setMaximumSize(d);
         setMinimumSize(d);
-
-        setBackground(Color.yellow);
 
         setupComponents();
         setupLayout();

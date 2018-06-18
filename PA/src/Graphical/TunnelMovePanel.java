@@ -33,21 +33,19 @@ public class TunnelMovePanel extends JPanel implements Observer {
         setMaximumSize(d);
         setMinimumSize(d);
 
-        setBackground(Color.yellow);
-
         setupComponents();
         setupLayout();
     }
 
     public void setupComponents() {
-        enterBtn        = new JButton("Enter Tunnel (1 AP)");
-        exitBtn         = new JButton("Exit Tunnel (free)");
-        advanceBtn      = new JButton("Advance (free or 1 AP)");
-        fastMovementBtn = new JButton("FastMovement (1 AP)");
+        enterBtn = new JButton("Enter Tunnel");
+        exitBtn = new JButton("Exit Tunnel");
+        advanceBtn = new JButton("Advance");
+        fastMovementBtn = new JButton("FastMovement");
 
-        enterBtn       .addActionListener(new EnterListener());
-        exitBtn        .addActionListener(new ExitListener());
-        advanceBtn     .addActionListener(new AdvanceListener());
+        enterBtn.addActionListener(new EnterListener());
+        exitBtn.addActionListener(new ExitListener());
+        advanceBtn.addActionListener(new AdvanceListener());
         fastMovementBtn.addActionListener(new FastMovementListener());
     }
 

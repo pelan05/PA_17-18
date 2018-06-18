@@ -10,7 +10,7 @@ public class AwaitBeggining extends StateAdapter {
     }
 
     @Override
-    public Estado Beggining(){
+    public Estado Beggining() {
         getGame().CreateDeck();
         getGame().ShuffleDeck();
         getGame().newTurn();

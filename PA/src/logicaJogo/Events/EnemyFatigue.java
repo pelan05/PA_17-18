@@ -1,12 +1,11 @@
 package logicaJogo.events;
 
-import java.io.Serializable;
 import logicaJogo.DRM;
 import logicaJogo.Game;
 import logicaJogo.events.RegularMove;
 
 
-public class EnemyFatigue extends RegularMove  implements Serializable{
+public class EnemyFatigue extends RegularMove {
 
     public EnemyFatigue() {
         super("Enemy Fatigue", "+1 to Coupure, Raid adn Sabotage actions", 3, new LadderAdvancement());   

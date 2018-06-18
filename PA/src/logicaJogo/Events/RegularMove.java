@@ -1,11 +1,10 @@
 package logicaJogo.events;
 
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RegularMove extends Event  implements Serializable{
+public class RegularMove extends Event {
 
     public RegularMove(String name, String description, int actionPoints, EnemyAdvancement ...ems) {
         this.name = name;

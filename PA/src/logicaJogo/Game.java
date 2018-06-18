@@ -1,18 +1,19 @@
 package logicaJogo;
 
-import java.io.Serializable;
 import logicaJogo.events.*;
 import logicaJogo.cartas.EnemyCard;
 import logicaJogo.cartas.EventCard;
 import logicaJogo.cartas.StatusCard;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
 import javax.swing.*;
 
-public class Game implements Serializable{
+public class Game  implements Serializable
+{
 
     private boolean over;
     private boolean defaultTunnelMovement;

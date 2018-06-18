@@ -13,25 +13,14 @@ public class AwaitPlayerAction extends StateAdapter {
 
     @Override
     public  Estado archersAttack(){
-        
-        
-        
-        System.out.println("estou aqui ------------1----------");
-        
         if(game.useActionPoints() == false){
             endOfTurn();
         }
 
-        
-        System.out.println("estou aqui ------------2----------");
-        
         row ROW = getGame().getEnemy().getRow(getGame().getRowChoice());
 
         int diceRoll = getGame().getRoll();
 
-        
-        System.out.println("estou aqui -------------3---------"+diceRoll);
-        
         switch(getGame().getRowChoice()){
             case 0:
                 diceRoll += getGame().getDRM().get(DRM.LADDERS);
@@ -236,16 +225,14 @@ public class AwaitPlayerAction extends StateAdapter {
         getGame().newTurn();
         return new AwaitTopCard(getGame());
     }
-
+    
     @Override
     public Estado selectRow(int row) {
-        //funciona
         getGame().setRowChoice(row);
 
         return this;
-        
     }
-    
+
     @Override
     public Estado tunnelMovement() {
         return new AwaitTunnelChoice(getGame());

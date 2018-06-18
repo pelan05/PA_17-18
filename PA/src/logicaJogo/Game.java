@@ -1,5 +1,6 @@
 package logicaJogo;
 
+import Graphical.GraphicalUi;
 import logicaJogo.events.*;
 import logicaJogo.cartas.EnemyCard;
 import logicaJogo.cartas.EventCard;
@@ -8,6 +9,9 @@ import logicaJogo.cartas.StatusCard;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import Graphical.GraphicalPanel;
+
+import javax.swing.*;
 
 public class Game {
 
@@ -49,13 +53,13 @@ public class Game {
 
     public void CreateDeck() {
         deck.clear();
-        deck.add(new EventCard(1, new TrebuchetEvent(), new TrebuchetEvent(), new TrebuchetEvent()));
-        deck.add(new EventCard(2, new Illness(), new GuardsDistracted(), new TrebuchetEvent()));
-        deck.add(new EventCard(3, new SuppliesSpoiled(), new BadWeather(), new BoilingOil()));
-        deck.add(new EventCard(4, new DeathofaLeader(), new GateFortified(), new FlamingArrows()));
-        deck.add(new EventCard(5, new VolleyofArrows(), new Collapsed(), new RepairedTrebuchet()));
-        deck.add(new EventCard(6, new CoverofDarkness(), new EnemyFatigue(), new Rally()));
-        deck.add(new EventCard(7, new DeterminedEnemy(), new IronShields(), new Faith()));
+        deck.add(new EventCard(GraphicalPanel.getEventCard1(),1, new TrebuchetEvent(), new TrebuchetEvent(), new TrebuchetEvent()));
+        deck.add(new EventCard(GraphicalPanel.getEventCard2(),2, new Illness(), new GuardsDistracted(), new TrebuchetEvent()));
+        deck.add(new EventCard(GraphicalPanel.getEventCard3(),3, new SuppliesSpoiled(), new BadWeather(), new BoilingOil()));
+        deck.add(new EventCard(GraphicalPanel.getEventCard4(),4, new DeathofaLeader(), new GateFortified(), new FlamingArrows()));
+        deck.add(new EventCard(GraphicalPanel.getEventCard5(),5, new VolleyofArrows(), new Collapsed(), new RepairedTrebuchet()));
+        deck.add(new EventCard(GraphicalPanel.getEventCard6(),6, new CoverofDarkness(), new EnemyFatigue(), new Rally()));
+        deck.add(new EventCard(GraphicalPanel.getEventCard7(),7, new DeterminedEnemy(), new IronShields(), new Faith()));
     }
 
     public boolean DeckEmpty(){return deck.isEmpty();}
@@ -215,5 +219,27 @@ public class Game {
         normalTunnel();
 
         addDay();
+    }
+
+    public int getDeckSize(){
+        return deck.size();
+    }
+
+    public final EventCard getCard(int pos){
+        if(pos < 7){
+            return deck.get(pos);
+        }
+        return null;
+    }
+    
+    public final ImageIcon getCardImg(int pos){
+        if(pos < 7){
+            return deck.get(pos).getImage();
+        }
+        return null;
+    }
+    
+    public boolean cardIsUsed(int index){
+        return getCard(index).isUsed();
     }
 }

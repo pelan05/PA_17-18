@@ -11,7 +11,6 @@ public class Interface {
 
     private ObservableGame Obgame;
     private Scanner scanner;
-    private boolean trackdirection;
 
     public Interface(ObservableGame Obgame) {
         this.Obgame = Obgame;
@@ -105,11 +104,13 @@ public class Interface {
         value = scanner.nextInt();
 
        if (value == 1 || value == 2)
-           getUserInputAwaitngRowDirection();
+            
+            getUserInputAwaitngRowDirection();
+            /*if (!trackdirection) {
                 //Obgame.setState(new AwaitRowDirection(Obgame.getGame()));
-                //erro
                 
                 
+            }*/
 
         switch (value) {
             case 1:

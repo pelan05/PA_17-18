@@ -7,13 +7,11 @@ public class AwaitRowDirection extends StateAdapter {
     public AwaitRowDirection(Game game){
         super(game);
     }
-/*
+
     @Override
     public Estado selectRow(int row) {
-        //funciona
         getGame().setRowChoice(row);
 
         return new AwaitPlayerAction(getGame());
-        
-    }*/
+    }
 }

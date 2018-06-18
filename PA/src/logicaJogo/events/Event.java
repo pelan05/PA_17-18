@@ -1,9 +1,10 @@
 package logicaJogo.events;
+import java.io.Serializable;
 import logicaJogo.*;
 import java.util.ArrayList;
 
 
-public class Event {
+public class Event  implements Serializable{
     public int ActionPointAvaible;
     public String name;
     public String description;

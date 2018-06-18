@@ -1,8 +1,10 @@
 package logicaJogo;
 
+import java.io.Serializable;
 
 
-public class DiceRoll {
+
+public class DiceRoll  implements Serializable{
 
 public int getRoll(){
 

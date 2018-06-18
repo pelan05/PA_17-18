@@ -1,10 +1,11 @@
 package logicaJogo.events;
 
+import java.io.Serializable;
 import logicaJogo.cartas.*;
 import logicaJogo.Game;
 import logicaJogo.events.RegularMove;
 
-public class TrebuchetEvent extends RegularMove {
+public class TrebuchetEvent extends RegularMove implements Serializable {
     public TrebuchetEvent() {
         
         /*switch(g.getDay())*/

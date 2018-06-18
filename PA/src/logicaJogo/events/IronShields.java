@@ -1,10 +1,11 @@
 package logicaJogo.events;
 
+import java.io.Serializable;
 import logicaJogo.DRM;
 import logicaJogo.Game;
 import logicaJogo.events.RegularMove;
 
-public class IronShields extends RegularMove {
+public class IronShields extends RegularMove  implements Serializable{
     public IronShields() {
         super("Iron Shields", "-1 to attacks on the Siege Tower", 2, new RamAdvancement());
     }

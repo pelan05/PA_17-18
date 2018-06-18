@@ -1,10 +1,11 @@
 package logicaJogo.events;
 
+import java.io.Serializable;
 import logicaJogo.DRM;
 import logicaJogo.Game;
 import logicaJogo.events.RegularMove;
 
-public class VolleyofArrows extends RegularMove {
+public class VolleyofArrows extends RegularMove implements Serializable{
     public VolleyofArrows() {
         super("Volley Of Arrows", "+1 to all attacks", 3, new RamAdvancement());
     }

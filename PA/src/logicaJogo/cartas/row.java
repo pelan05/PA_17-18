@@ -1,6 +1,8 @@
 package logicaJogo.cartas;
 
-public class row {
+import java.io.Serializable;
+
+public class row  implements Serializable{
     private int size;
     private int value;
     private int strength;

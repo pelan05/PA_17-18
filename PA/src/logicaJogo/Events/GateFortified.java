@@ -1,10 +1,11 @@
 package logicaJogo.events;
 
+import java.io.Serializable;
 import logicaJogo.DRM;
 import logicaJogo.Game;
 import logicaJogo.events.RegularMove;
 
-public class GateFortified extends RegularMove {
+public class GateFortified extends RegularMove implements Serializable {
     public GateFortified() {
         super("Gate Fortified", "+1 to attacks on the Battering Ram", 2, new LadderAdvancement(), new RamAdvancement());
     }

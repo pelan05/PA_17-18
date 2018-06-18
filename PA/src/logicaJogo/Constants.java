@@ -3,14 +3,12 @@ import java.util.*;
 
 public interface Constants {
 
-    final static String CARD1 = "logicaJogo/Card1";
-    final static String CARD2 = "logicaJogo/Card2";
-    final static String CARD3 = "logicaJogo/Card3";
-    final static String CARD4 = "logicaJogo/Card4";
-    final static String CARD5 = "logicaJogo/Card5";
-    final static String CARD6 = "logicaJogo/Card6";
-    final static String CARD7 = "logicaJogo/Card7";
 
+    final static String REDBOX = "images/box/redBox.png";
+    final static String GREENBOX = "images/box/greenBox.png";
+    final static String BLUEBOX = "images/box/blueBox.png";
+    final static String YELLOWBOX = "images/box/yellowBox.png";
+    final static String BLACKBOX = "images/box/blackBox.png";
     final static String IMG_BACK = "images/Back.jpg";
     final static String IMG_INTRO = "images/Intro.jpg";
     final static String IMG_BACKGROUND = "images/Background.jpg";
@@ -23,8 +21,20 @@ public interface Constants {
     final static String IMG5 = "images/IMG5.jpg";
     final static String IMG6 = "images/IMG6.jpg";
     final static String IMG7 = "images/IMG7.jpg";
-    
+
+    static final int START_X_FRAME = 200;
+    static final int START_Y_FRAME = 100;
+
+    static final int DIM_X_FRAME   = 1366;
+    static final int DIM_Y_FRAME   = 768;
 
 
+    static final int DIM_X_CARD = 200;
+    static final int DIM_Y_CARD = 400;
 
+    static final int GAP_X_CARD = 5;
+    static final int GAP_Y_CARD = 5;
+
+    static final int DIM_MENU_BTN_X = 0;
+    static final int DIM_MENU_BTN_Y = 0;
 }

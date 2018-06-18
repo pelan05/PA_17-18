@@ -4,7 +4,9 @@ import logicaJogo.Game;
 import logicaJogo.ObservableGame;
 import logicaJogo.cartas.row;
 
-public class StateAdapter implements Estado {
+import java.io.Serializable;
+
+public class StateAdapter implements Estado, Serializable {
 
     public Game game;
 

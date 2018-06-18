@@ -214,7 +214,7 @@ public class AwaitPlayerAction extends StateAdapter {
             return new GameOver(getGame());
         }
 
-        if (getGame().DeckEmpty()){
+        if ( getGame().getDeck().size() == 0 ){
             getGame().endOfDay();
             return new AwaitTopCard(getGame());
         }

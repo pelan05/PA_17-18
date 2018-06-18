@@ -15,6 +15,8 @@ public class ObservableGame extends Observable {
     public ObservableGame() {
         this.game = new Game();
         this.state = new AwaitBeggining(game);
+        setChanged();
+        notifyObservers();
     }
 
     private void loadGameInstance(){
@@ -26,6 +28,7 @@ public class ObservableGame extends Observable {
             aux = ((Game) oi.readObject());
             oi.close();
             game = aux;
+            start();
         }
         catch (FileNotFoundException e) {
             System.out.println("Error on reading file "+ e);
@@ -63,6 +66,8 @@ public class ObservableGame extends Observable {
 
     public void setGame(Game game) {
         this.game = game;
+        setChanged();
+        notifyObservers();
     }
 
     public Game getGame() {
@@ -87,94 +92,90 @@ public class ObservableGame extends Observable {
 
     public void start() {
         setState(getState().Beggining());
+        setChanged();
+        notifyObservers();
     }
 
     public void draw() {
         setState(getState().drawsTopCard());
+        setChanged();
+        notifyObservers();
     }
 
     public void archersAttack() {
         setState(getState().archersAttack());
+        setChanged();
+        notifyObservers();
     }
 
     public void boilingWaterAttack() {
         setState(getState().boilingWater());
+        setChanged();
+        notifyObservers();
     }
 
     public void closeCombat() {
         setState(getState().closeCombat());
+        setChanged();
+        notifyObservers();
     }
 
     public void coupure() {
         setState(getState().coupure());
+        setChanged();
+        notifyObservers();
     }
 
     public void rallyTroops(Boolean applyDRM) {
         setState(getState().rallyTroops(applyDRM));
+        setChanged();
+        notifyObservers();
     }
 
     public void supplyRaid() {
         setState(getState().supplyRaid());
+        setChanged();
+        notifyObservers();
     }
 
     public void sabotage() {
         setState(getState().sabotage(0));
+        setChanged();
+        notifyObservers();
     }
 
     public void endOfTurn() {
         setState(getState().endOfTurn());
+
     }
 
     public void tunnelMovement() {
         setState(getState().tunnelMovement());
+        setChanged();
+        notifyObservers();
     }
 
     public void enterTunnel() {
         setState(getState().enterTunnel());
+        setChanged();
+        notifyObservers();
     }
 
     public void exitTunnel() {
         setState(getState().exitTunnel());
+        setChanged();
+        notifyObservers();
     }
 
     public void fastMovement() {
         setState(getState().paidTunnelMovement());
+        setChanged();
+        notifyObservers();
     }
 
     public void selectRowChoice(int row) {
         
         setState(getState().selectRow(row));
-    }
-    public boolean isUsed(int index){
-        return  game.cardIsUsed(index);
-    }
-
-    public Boolean isTurned(int index){
-        return game.getCard(index).isTurned();
-    }
-
-    public void chooseCard(int pos){
-        draw();
-
-        setChanged();
-        notifyObservers();
-
-
-        if(pos == 0 || pos == 3){
-            getGame().getCard(pos + 1).turnCard();
-            getGame().getCard(pos + 2).turnCard();
-        }else if( pos == 1 ) {
-            getGame().getCard(pos + 1).useCard();
-            getGame().getCard(pos + 2).turnCard();
-        }else if (pos == 2 ) {
-            getGame().getCard(pos - 1).useCard();
-            getGame().getCard(pos + 1).turnCard();
-        }else if (pos == 4) {
-            getGame().getCard(pos + 1).useCard();
-        }else if(pos == 5) {
-            getGame().getCard(pos - 1).useCard();
-        }
-
         setChanged();
         notifyObservers();
     }
@@ -184,11 +185,4 @@ public class ObservableGame extends Observable {
         return game.toString();
     }
 
-    public int getDeckSize(){
-        return game.getDeckSize();
-    }
-
-    public final ImageIcon getCardImage(int index){
-        return game.getCardImg(index);
-    }
 }
